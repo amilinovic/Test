@@ -13,13 +13,14 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 print(newfileslist)
 
 for addedfile in newfileslist:
-  name_pipeline = os.path.splitext(addedfile)[0].split("/")   #addedfile.decode("utf-8").split("/")[0]
-  print(name_pipeline)
+  name_directory = os.path.splitext(addedfile)[0].split("/")   #addedfile.decode("utf-8").split("/")[0]
+  directory = name_directory[0]
+  print(directory)
 
-  # if name_pipeline == "databricks":
-  #   print(name_pipeline + "Added file for databricks" + addedfile)
-  # else:
-  #   print("Added file for marlinkpy")
+  if directory == "databricks":
+    print(directory + "Added file for databricks" + addedfile)
+  else:
+    print("Added file for marlinkpy")
 
 # Moze da se doda da ako je editovaj databricks folder da pokrene ovaj pipeline. A ako je editovan marlinkpy da pokrene drugi pipeline
 # if newfiles.decode("utf-8") == '':
