@@ -11,7 +11,7 @@ parameters:
 
 # pool:
 #   name: "Hosted Ubuntu 1604"
-
+steps:
 - task: UsePythonVersion@0
   displayName: 'Use Python 3.7'
   inputs:
