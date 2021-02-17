@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import od
+import os
 import subprocess
 import json
 
