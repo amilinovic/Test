@@ -1,0 +1,14 @@
+trigger:
+  batch: true
+  branches:
+    include: 
+    - master
+    - vnext
+
+pool:
+  name: "SelfHosted Ubuntu 18"
+
+steps:
+- script: python3 build_pipelines/playbook-pipelines-autocreate.py
+  workingDirectory: $(Build.SourcesDirectory)
+  continueOnError: true
