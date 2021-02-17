@@ -16,7 +16,7 @@ steps:
 - template: templates/azure_release_pipeline.yml
   parameters:
     Environment: Tst
-    VariableGroup: MART-ACC
+    # VariableGroup: MART-ACC
     ProjectName: $(project_name)
 
 # - task: UsePythonVersion@0

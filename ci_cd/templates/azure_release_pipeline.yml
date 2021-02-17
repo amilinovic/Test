@@ -2,15 +2,15 @@ parameters:
 - name: Environment
   type: string
   default: "EnvironmentName"
-- name: VariableGroup
-  type: string
-  default: "VariableGroup"
+# - name: VariableGroup
+#   type: string
+#   default: "VariableGroup"
 - name: project_name
   type: string
   default: "project_name"
 
-pool:
-  name: "Hosted Ubuntu 1604"
+# pool:
+#   name: "Hosted Ubuntu 1604"
 
 - task: UsePythonVersion@0
   displayName: 'Use Python 3.7'
