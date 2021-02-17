@@ -6,6 +6,6 @@ import json
 
 print('Just a test of script')
 
-newfiles = subprocess.check_output('git diff --diff-filter=AR --name-only HEAD^ HEAD',shell=True)
+newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
 print(newfiles)
