@@ -9,7 +9,8 @@ pool:
   name: "Hosted Ubuntu 1604"
 
 stages:
-- script: python3 ci_cd/build_release.py
+- stage: Run the script
+  script: python3 ci_cd/build_release.py
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
 
