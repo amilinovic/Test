@@ -8,7 +8,9 @@ print('Just a test of script')
 
 files = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
-newfiles = files.decode().split("/")[0]
+newfiles = files.decode("utf-8").split("/")[0]
+
+print(newfiles)
 
 if newfiles == "darabricks":
   print(newfiles + "Added file for databricks")
