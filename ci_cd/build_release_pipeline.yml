@@ -34,4 +34,4 @@ steps:
   displayName: 'Export Databricks Workspace'
   inputs: 
     script: |
-      databricks workspace import_dir $(Pipeline.Workspace)/s/$(projectName) /Tst/$(projectName) -o
+      databricks workspace import_dir $(Pipeline.Workspace)/s/$(project_name) /Tst/$(project_name) -o
