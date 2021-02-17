@@ -8,7 +8,7 @@ print('Just a test of script')
 
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
-newfileslist = files.decode("utf-8").splitlines()
+newfileslist = newfiles.decode("utf-8").splitlines()
 
 # .split("/")[0]
 
