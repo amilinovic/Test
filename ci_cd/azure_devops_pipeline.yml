@@ -8,7 +8,7 @@ trigger:
 pool:
   name: "Hosted Ubuntu 1604"
 
-steps:
+stages:
 - script: python3 ci_cd/build_release.py
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
