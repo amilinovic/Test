@@ -13,7 +13,7 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 print(newfileslist)
 
 for addedfile in newfileslist:
-  name_pipeline = addedfile.decode("utf-8").split("/")[0]
+  name_pipeline = os.path.splitext(addedfile)[0].split("/")   #addedfile.decode("utf-8").split("/")[0]
 
   if name_pipeline == "databricks":
     print(name_pipeline + "Added file for databricks" + addedfile)
