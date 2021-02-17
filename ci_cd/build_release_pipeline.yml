@@ -13,7 +13,7 @@ steps:
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
 
-- ${{ if and(ne(variables[project_name], ''), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
+- ${{ if and(ne($(project_name), ''), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
   - template: templates/azure_release_pipeline.yml
     # condition: and(ne(variables[project_name], ''), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     parameters:
