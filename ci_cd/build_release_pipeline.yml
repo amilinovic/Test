@@ -12,3 +12,17 @@ steps:
 - script: python3 ci_cd/build_release.py
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
+
+- task: CmdLine@2
+  displayName: 'Configure databricks cli'
+  inputs: 
+    script: |
+      databricks configure --token <<EOF
+      https://adb-1171646850907998.18.azuredatabricks.net/
+      dapi493ff0e96c95ea876cbd8d799ec4c30d-2
+      EOF
+- task: CmdLine@2
+  displayName: 'Export Databricks Workspace'
+  inputs: 
+    script: |
+      databricks workspace import_dir $(Pipeline.Workspace)/s/$(projectName) /Tst/$(projectName) -o
