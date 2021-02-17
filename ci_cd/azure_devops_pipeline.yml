@@ -10,9 +10,10 @@ pool:
 
 stages:
 - stage: Run the script
-  script: python3 ci_cd/build_release.py
-  workingDirectory: $(Build.SourcesDirectory)
-  continueOnError: true
+  jobs:
+    - script: python3 ci_cd/build_release.py
+      workingDirectory: $(Build.SourcesDirectory)
+      continueOnError: true
 
 - stage: BuildAndDeployToTest
   condition: and(ne(variables[DetermineResult.project_name], ''), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
