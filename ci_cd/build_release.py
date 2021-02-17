@@ -18,7 +18,7 @@ for addedfile in newfileslist:
   print(directory)
 
   if directory == "databricks":
-    print(directory + "Added file for databricks" + addedfile)
+    print(directory + " Added file for databricks " + addedfile)
   else:
     print("Added file for marlinkpy")
 
