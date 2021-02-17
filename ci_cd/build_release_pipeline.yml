@@ -6,7 +6,7 @@ trigger:
     - vnext
 
 pool:
-  name: "SelfHosted Ubuntu 18"
+  name: "Hosted Ubuntu 1604"
 
 steps:
 - script: python3 build_pipelines/build_release.py
