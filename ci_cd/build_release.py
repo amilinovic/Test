@@ -18,7 +18,7 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(directory + ' Added file for databricks ' + addedfile)
-    print('##vso[task.setvariable variable=project_name;isOutput=true;]'projectName)
+    print('##vso[task.setvariable variable=projectName;isOutput=true;]'project_name)
     
   else:
     print('No added files to databricks. Exiting.')
