@@ -9,10 +9,6 @@ pool:
   name: "Hosted Ubuntu 1604"
 
 steps:
-- task: UsePythonVersion@0
-  displayName: 'Use Python 3.7'
-  inputs:
-    versionSpec: 3.7
 - script: python3 ci_cd/build_release.py
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
