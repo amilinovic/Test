@@ -10,7 +10,7 @@ files = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HE
 
 newfiles = files.split("/")[0]
 
-if newfiles == "darabricks"
+if newfiles == "darabricks":
   print(newfiles + "Added file for databricks")
 else:
   print("Added file for marlinkpy")
