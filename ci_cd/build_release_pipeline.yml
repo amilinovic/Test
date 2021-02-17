@@ -9,6 +9,6 @@ pool:
   name: "SelfHosted Ubuntu 18"
 
 steps:
-- script: python3 build_pipelines/playbook-pipelines-autocreate.py
+- script: python3 build_pipelines/build_release.py
   workingDirectory: $(Build.SourcesDirectory)
   continueOnError: true
