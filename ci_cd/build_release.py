@@ -4,8 +4,6 @@ import os
 import subprocess
 import json
 
-pip3 install databricks-cli
-
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
 newfileslist = newfiles.decode("utf-8").splitlines()
