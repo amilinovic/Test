@@ -10,14 +10,15 @@ newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^
 
 newfileslist = newfiles.decode("utf-8").splitlines()
 
-# .split("/")[0]
-
 print(newfileslist)
 
-# if newfiles == "darabricks":
-#   print(newfiles + "Added file for databricks")
-# else:
-#   print("Added file for marlinkpy")
+for addedfile in newfileslist:
+  name_pipeline = addedfile.decode("utf-8").split("/")[0]
+
+  if name_pipeline == "databricks":
+    print(name_pipeline + "Added file for databricks" + addedfile)
+  else:
+    print("Added file for marlinkpy")
 
 # Moze da se doda da ako je editovaj databricks folder da pokrene ovaj pipeline. A ako je editovan marlinkpy da pokrene drugi pipeline
 # if newfiles.decode("utf-8") == '':
