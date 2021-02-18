@@ -23,7 +23,7 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(directory + ' Added file for databricks ' + addedfile)
     # print('$(project_name)')
-    shutil.copytree(original, target, symlinks, ignore)
+    shutil.copytree(original, target)
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
     print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
     # print("Current working dir : %s" % os.getcwd())          /home/vsts/work/1/s
