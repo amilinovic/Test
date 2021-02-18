@@ -6,8 +6,6 @@ parameters:
 jobs:
 - deployment: DeployTo${{parameters.Environment}}
   environment: ${{parameters.Environment}}
-  workspace:
-    clean: all
   strategy:
     runOnce:
       deploy:
