@@ -19,7 +19,7 @@ for addedfile in newfileslist:
     print(directory + ' Added file for databricks ' + addedfile)
     # print('$(project_name)')
     # print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
-    print(os.getcwd)
+    print "Current working dir : %s" % os.getcwd()
     
   else:
     print('No added files to databricks. Exiting.')
