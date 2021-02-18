@@ -10,6 +10,7 @@ jobs:
     runOnce:
       deploy:
         steps:
+        - checkout: self
         - script: python3 ci_cd/build_release.py
           workingDirectory: $(Build.SourcesDirectory)
           continueOnError: true
