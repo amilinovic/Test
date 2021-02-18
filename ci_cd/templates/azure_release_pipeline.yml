@@ -1,7 +1,11 @@
+parameters:
+- name: Environment
+  type: string
+  default: "EnvironmentName"
 
 jobs:
-- deployment: DeployTo${{  parameters.Environment  }}
-  environment: ${{  parameters.Environment  }}
+- deployment: DeployTo${{parameters.Environment}}
+  environment: ${{parameters.Environment}}
   strategy:
     runOnce:
       deploy:
@@ -35,4 +39,4 @@ jobs:
           continueOnError: true
           inputs: 
             script: |
-              databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /Tst/$(project_name) -o
+              databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o

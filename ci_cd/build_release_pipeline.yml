@@ -16,17 +16,21 @@ stages:
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   jobs:
     - template: templates/azure_release_pipeline.yml
-  # parameters:
-    # Environment: Tst
-    # VariableGroup: MART-ACC
-    # project_name: $(project_name)
+      parameters:
+        Environment: Tst
+        # VariableGroup: MART-ACC
+        # project_name: $(project_name)
 
 - stage: BuildAndDeployToAcc
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
     - template: templates/azure_release_pipeline.yml
+      parameters:
+        Environment: Acc
 
 - stage: BuildAndDeployToPrd
   condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   jobs:
     - template: templates/azure_release_pipeline.yml
+      parameters:
+        Environment: Prd
