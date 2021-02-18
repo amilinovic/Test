@@ -40,4 +40,4 @@ jobs:
           continueOnError: true
           inputs: 
             script: |
-              databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o
+              databricks workspace import_dir $(Pipeline.Workspace)/s/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o

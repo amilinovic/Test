@@ -18,16 +18,16 @@ for addedfile in newfileslist:
   directory = name_directory[0]
   project_name = name_directory[1]
 
-  if os.path.isdir(target) == True:
-    os.rmdir(target)
-  else:
-    print(target + ' Dir not created still')
+  # if os.path.isdir(target) == True:
+  #   os.rmdir(target)
+  # else:
+  #   print(target + ' Dir not created still')
 
   if directory == 'databricks':
     print(directory + ' Added file for databricks ' + addedfile)
 
     # Copy files to databricks directory
-    shutil.copytree(original, target)
+    # shutil.copytree(original, target)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
