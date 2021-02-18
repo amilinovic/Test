@@ -12,7 +12,7 @@ original = "/home/vsts/work/1/s"
 target = "/home/vsts/work/1/databricks"
 
 # if os.path.isdir(target) == True:
-os.remove(target)
+# os.remove(target)
   # shutil.copytree(original, target)
 #   print('Deleted directory')
 # else:
@@ -29,7 +29,7 @@ for addedfile in newfileslist:
     print(directory + ' Added file for databricks ' + addedfile)
 
     # Copy files to databricks directory
-    shutil.copytree(original, target)
+    shutil.copyfile(addedfile, target)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
