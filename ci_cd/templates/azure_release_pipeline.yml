@@ -1,17 +1,9 @@
-parameters:
-- name: Environment
-  type: string
-  default: "EnvironmentName"
-# - name: VariableGroup
-#   type: string
-#   default: "VariableGroup"
-- name: project_name
-  type: string
-  default: "project_name"
 
-# pool:
-#   name: "Hosted Ubuntu 1604"
 steps:
+- script: python3 ci_cd/build_release.py
+  workingDirectory: $(Build.SourcesDirectory)
+  continueOnError: true
+
 - task: UsePythonVersion@0
   displayName: 'Use Python 3.7'
   inputs:
@@ -32,5 +24,6 @@ steps:
 - task: CmdLine@2
   displayName: 'Export Databricks Workspace'
   inputs: 
+    continueOnError: true
     script: |
-      databricks workspace import_dir $(Pipeline.Workspace)/s/databricks/${{parameters.project_name}} /${{parameters.Environment}}/${{parameters.project_name}} -o
+      databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /Tst/$(project_name) -o
