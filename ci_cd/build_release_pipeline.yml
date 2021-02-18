@@ -10,15 +10,23 @@ trigger:
 pool:
   name: "Hosted Ubuntu 1604"
 
-steps:
-# - script: python3 ci_cd/build_release.py
-#   workingDirectory: $(Build.SourcesDirectory)
-#   continueOnError: true
+stages:
 
-# - ${{ if and(ne(project_name, ''), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
-- template: templates/azure_release_pipeline.yml
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+- stage: BuildAndDeployToTst
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  jobs:
+    - template: templates/azure_release_pipeline.yml
   # parameters:
     # Environment: Tst
     # VariableGroup: MART-ACC
     # project_name: $(project_name)
+
+- stage: BuildAndDeployToAcc
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  jobs:
+    - template: templates/azure_release_pipeline.yml
+
+- stage: BuildAndDeployToPrd
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  jobs:
+    - template: templates/azure_release_pipeline.yml
