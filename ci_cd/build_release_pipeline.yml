@@ -15,31 +15,8 @@ steps:
 
 # - ${{ if and(ne(project_name, ''), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
 - template: templates/azure_release_pipeline.yml
-  # condition: and(ne(variables[project_nsame], ''), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   # parameters:
     # Environment: Tst
     # VariableGroup: MART-ACC
     # project_name: $(project_name)
-
-# - task: UsePythonVersion@0
-#   displayName: 'Use Python 3.7'
-#   inputs:
-#     versionSpec: 3.7
-# # Install required Python modules.
-# - task: CmdLine@2 
-#   displayName: 'Load Python Dependencies'
-#   inputs:
-#     script: pip3 install databricks-cli
-# - task: CmdLine@2
-#   displayName: 'Configure databricks cli'
-#   inputs: 
-#     script: |
-#       databricks configure --token <<EOF
-#       https://adb-1171646850907998.18.azuredatabricks.net/
-#       dapi493ff0e96c95ea876cbd8d799ec4c30d-2
-#       EOF
-# - task: CmdLine@2
-#   displayName: 'Export Databricks Workspace'
-#   inputs: 
-#     script: |
-#       databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /Tst/$(project_name) -o
