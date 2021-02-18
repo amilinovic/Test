@@ -6,7 +6,7 @@ import subprocess
 import json
 
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
-subprocess.check_call([sys.executabe, '-m', 'pip3', 'install', 'databricks-cli'])
+subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'databricks-cli'])
 
 newfileslist = newfiles.decode("utf-8").splitlines()
 
