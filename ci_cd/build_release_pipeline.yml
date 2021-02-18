@@ -2,10 +2,10 @@ trigger:
   batch: true
   branches:
     include: 
-    - develop
-    - vnext
-    exclude:
     - master
+    - develop
+    exclude:
+    - feature/*
 
 pool:
   name: "Hosted Ubuntu 1604"
