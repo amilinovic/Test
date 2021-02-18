@@ -1,12 +1,15 @@
 #!/usr/bin/python3
 
-import sys
+# import sys
 import os
+import shutil
 import subprocess
 import json
 
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
-subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'databricks-cli'])
+# subprocess.check_call([sys.executable, '-m', 'pip3', 'install', 'databricks-cli'])
+original = "/home/vsts/work/1/s"
+target = "/home/vsts/work/1/databricks"
 
 newfileslist = newfiles.decode("utf-8").splitlines()
 
@@ -20,7 +23,9 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(directory + ' Added file for databricks ' + addedfile)
     # print('$(project_name)')
-    # print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
+    shutil.copyfile(original, target)
+    print('##vso[task.setvariable variable=directory;]%s' % (directory))
+    print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
     # print("Current working dir : %s" % os.getcwd())          /home/vsts/work/1/s
     
   else:
