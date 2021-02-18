@@ -11,12 +11,12 @@ newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^
 original = "/home/vsts/work/1/s"
 target = "/home/vsts/work/1/databricks"
 
-if os.path.isdir(target) == True:
-  os.remove(target)
+# if os.path.isdir(target) == True:
+os.remove(target)
   # shutil.copytree(original, target)
-  print('Deleted directory')
-else:
-  print('Did not delete the directory')
+#   print('Deleted directory')
+# else:
+#   print('Did not delete the directory')
 
 newfileslist = newfiles.decode("utf-8").splitlines()
 
