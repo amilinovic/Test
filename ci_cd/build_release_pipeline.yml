@@ -17,7 +17,7 @@ steps:
 
 # - ${{ if and(ne(project_name, ''), eq(variables['Build.SourceBranch'], 'refs/heads/master')) }}:
 - template: templates/azure_release_pipeline.yml
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
   # parameters:
     # Environment: Tst
     # VariableGroup: MART-ACC
