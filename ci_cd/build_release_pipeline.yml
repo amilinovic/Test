@@ -21,10 +21,10 @@ steps:
 #       # VariableGroup: MART-ACC
 #       project_name: $(project_name)
 
-# - task: UsePythonVersion@0
-#   displayName: 'Use Python 3.7'
-#   inputs:
-#     versionSpec: 3.7
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.7'
+  inputs:
+    versionSpec: 3.7
 # Install required Python modules.
 - task: CmdLine@2 
   displayName: 'Load Python Dependencies'
