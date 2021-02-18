@@ -5,6 +5,7 @@ import subprocess
 import json
 
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
+subprocess.check_call([sys.executabe, '-m', 'pip3', 'install', 'databricks-cli'])
 
 newfileslist = newfiles.decode("utf-8").splitlines()
 
@@ -19,7 +20,7 @@ for addedfile in newfileslist:
     print(directory + ' Added file for databricks ' + addedfile)
     # print('$(project_name)')
     # print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
-    print("Current working dir : %s" % os.getcwd())
+    # print("Current working dir : %s" % os.getcwd())          /home/vsts/work/1/s
     
   else:
     print('No added files to databricks. Exiting.')
