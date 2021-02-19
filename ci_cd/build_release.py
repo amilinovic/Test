@@ -24,13 +24,14 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-
+    
+    shutil.copy(addedfile, dest)
     # Removes file exists error
-    if os.path.exists(dest):
-      shutil.rmtree(dest)
-      shutil.copytree(src, dest)
-    else:
-      shutil.copytree(src, dest)
+    # if os.path.exists(dest):
+    #   shutil.rmtree(dest)
+    #   shutil.copytree(src, dest)
+    # else:
+    #   shutil.copytree(src, dest)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
