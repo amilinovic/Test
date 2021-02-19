@@ -27,6 +27,7 @@ for addedfile in newfileslist:
     if os.path.exists(dest):
         shutil.rmtree(dest)
         shutil.copytree(src, dest)
+        print('Copied ' + src + ' to ' + dest)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
