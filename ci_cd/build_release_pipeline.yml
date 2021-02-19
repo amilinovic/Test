@@ -1,11 +1,15 @@
-trigger:
-  batch: true
+pr:
   branches:
-    include: 
-    - master
-    - develop
-    exclude:
-    - feature/*
+    include:
+    - feature/databricks/*
+# trigger:
+#   batch: true
+#   branches:
+#     include: 
+#     - master
+#     - develop
+#     exclude:
+#     - feature/*
 
 pool:
   name: "Hosted Ubuntu 1604"
