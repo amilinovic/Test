@@ -9,7 +9,7 @@ trigger:
     - master
     - develop
     exclude:
-    - feature/*
+    - feature/databricks/*
 
 pool:
   name: "Hosted Ubuntu 1604"
