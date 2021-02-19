@@ -14,6 +14,7 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 src = '/home/vsts/work/1/s'
 # Destination path
 dest = '/home/vsts/work/1/d'
+print(newfileslist)
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -21,10 +22,11 @@ for addedfile in newfileslist:
   directory = name_directory[0]
   # Get a name of project
   project_name = name_directory[1]
+  
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    
+
     shutil.copy(addedfile, dest)
     # Removes file exists error
     # if os.path.exists(dest):
