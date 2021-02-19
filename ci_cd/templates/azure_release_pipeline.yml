@@ -2,6 +2,9 @@ parameters:
 - name: Environment
   type: string
   default: "EnvironmentName"
+- name: directory
+  type: string
+  default: $(directory)
 
 jobs:
 - deployment: DeployTo${{parameters.Environment}}
@@ -39,5 +42,6 @@ jobs:
           displayName: 'Export Databricks Workspace'
           continueOnError: true
           inputs: 
+            ${{ if eq(parameters.directory, 'databricks') }}:
             script: |
               databricks workspace import_dir $(Pipeline.Workspace)/s/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o
