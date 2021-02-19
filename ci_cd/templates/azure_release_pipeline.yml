@@ -2,9 +2,9 @@ parameters:
 - name: Environment
   type: string
   default: "EnvironmentName"
-- name: directory
-  type: string
-  default: $(directory)
+# - name: directory
+#   type: string
+#   default: $(directory)
 
 jobs:
 - deployment: DeployTo${{parameters.Environment}}
@@ -41,7 +41,7 @@ jobs:
         # - ${{ if eq(parameters.directory, 'databricks') }}:
         - task: CmdLine@2
           displayName: 'Export Databricks Workspace'
-          condition: eq('${{ parameters.directory }}', 'databricks')
+          condition: eq('$(directory)', 'databricks')
           continueOnError: true
           inputs: 
             script: |
