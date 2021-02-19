@@ -10,7 +10,9 @@ newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^
 # Added files to list
 newfileslist = newfiles.decode("utf-8").splitlines()
 
+# Source path
 src = '/home/vsts/work/1/s'
+# Destination path
 dest = '/home/vsts/work/1/databricks'
 
 for addedfile in newfileslist:
@@ -23,7 +25,7 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
 
-    # shutil.copytree(src, dest)
+    # Removes file exists error
     if os.path.exists(dest):
       shutil.rmtree(dest)
       shutil.copytree(src, dest)
