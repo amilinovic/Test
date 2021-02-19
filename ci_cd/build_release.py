@@ -13,7 +13,7 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 # Source path
 src = '/home/vsts/work/1/s'
 # Destination path
-dest = '/home/vsts/work/1/databricks'
+dest = '/home/vsts/work/1/d'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -29,7 +29,6 @@ for addedfile in newfileslist:
     if os.path.exists(dest):
       shutil.rmtree(dest)
       shutil.copytree(src, dest)
-      print('Copied ' + src + ' to ' + dest)
     else:
       shutil.copytree(src, dest)
 
