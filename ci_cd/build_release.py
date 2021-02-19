@@ -27,22 +27,21 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
 
-    try:
-      shutil.move(addedfile, dest)
-    except shutil.SameFileError:
-      print("Source and destination represents the same file.")
-    except IsADirectoryError:
-      print("Destination is a directory.")
-    except:
-      print("Error occurred while copying file.")
+    # try:
+    #   shutil.move(addedfile, dest)
+    # except shutil.SameFileError:
+    #   print("Source and destination represents the same file.")
+    # except IsADirectoryError:
+    #   print("Destination is a directory.")
+    # except:
+    #   print("Error occurred while copying file.")
 
 
-    # Removes file exists error
-    # if os.path.exists(dest):
-    #   shutil.rmtree(dest)
-    #   shutil.copytree(src, dest)
-    # else:
-    #   shutil.copytree(src, dest)
+    Removes file exists error
+    if os.path.exists(dest):
+      pass
+    else:
+      shutil.copytree(src, dest)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
