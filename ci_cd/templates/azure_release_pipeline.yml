@@ -2,6 +2,9 @@ parameters:
 - name: Environment
   type: string
   default: "EnvironmentName"
+# - name: directory
+#   type: string
+#   default: $(directory)
 
 jobs:
 - deployment: DeployTo${{parameters.Environment}}
@@ -37,7 +40,8 @@ jobs:
 
         - task: CmdLine@2
           displayName: 'Export Databricks Workspace'
+          # condition: eq('$(directory)', 'databricks')
           continueOnError: true
           inputs: 
             script: |
-              databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o
+              databricks workspace import_dir $(Pipeline.Workspace)/d/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o
