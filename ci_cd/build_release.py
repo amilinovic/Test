@@ -2,12 +2,16 @@
 
 import os
 import subprocess
+import shutil 
 
 # Check git difference
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
 # Added files to list
 newfileslist = newfiles.decode("utf-8").splitlines()
+
+src = '/home/vsts/work/1/s'
+dest = '/home/vsts/work/1/databricks'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -19,8 +23,10 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
 
+    shutil.copytree(src, dest)
+
     # Pass variables from script to azure devops pipeline
-    print('##vso[task.setvariable variable=directory;]%s' % (directory))
+    # print('##vso[task.setvariable variable=directory;]%s' % (directory))
     print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
 
   else:

@@ -38,11 +38,10 @@ jobs:
               dapi493ff0e96c95ea876cbd8d799ec4c30d-2
               EOF
 
-        # - ${{ if eq(parameters.directory, 'databricks') }}:
         - task: CmdLine@2
           displayName: 'Export Databricks Workspace'
-          condition: eq('$(directory)', 'databricks')
+          # condition: eq('$(directory)', 'databricks')
           continueOnError: true
           inputs: 
             script: |
-              databricks workspace import_dir $(Pipeline.Workspace)/s/$(directory)/$(project_name) /${{parameters.Environment}}/$(project_name) -o
+              databricks workspace import_dir $(Pipeline.Workspace)/databricks/$(project_name) /${{parameters.Environment}}/$(project_name) -o
