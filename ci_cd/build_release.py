@@ -23,7 +23,7 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
 
-    shutil.copytree(src, dest, dirs_exist_ok=True)
+    shutil.copytree(src, dest, dirs_exist_ok=False)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))
