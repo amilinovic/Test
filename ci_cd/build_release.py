@@ -36,8 +36,6 @@ for addedfile in newfileslist:
     # except:
     #   print("Error occurred while copying file.")
 
-
-    Removes file exists error
     if os.path.exists(dest):
       pass
     else:
