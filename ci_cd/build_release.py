@@ -13,7 +13,7 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 # Source path
 src = '/home/vsts/work/1/s'
 # Destination path
-dest = '/home/vsts/work/1/databricks'
+dest = '/home/vsts/work/1/d'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -24,14 +24,14 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-
+    
+    shutil.copy(addedfile, dest)
     # Removes file exists error
-    if os.path.exists(dest):
-      shutil.rmtree(dest)
-      shutil.copytree(src, dest)
-      print('Copied ' + src + ' to ' + dest)
-    else:
-      shutil.copytree(src, dest)
+    # if os.path.exists(dest):
+    #   shutil.rmtree(dest)
+    #   shutil.copytree(src, dest)
+    # else:
+    #   shutil.copytree(src, dest)
 
     # Pass variables from script to azure devops pipeline
     print('##vso[task.setvariable variable=directory;]%s' % (directory))

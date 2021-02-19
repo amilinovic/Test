@@ -1,7 +1,3 @@
-# pr:
-#   branches:
-#     include:
-#     - feature/databricks/*
 trigger:
   batch: true
   branches:
@@ -9,6 +5,7 @@ trigger:
     - master
     - develop
     exclude:
+    - feature/*
     - feature/databricks/*
 
 pool:
