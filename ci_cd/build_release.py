@@ -26,7 +26,7 @@ for addedfile in newfileslist:
     shutil.copytree(src, dest)
 
     # Pass variables from script to azure devops pipeline
-    # print('##vso[task.setvariable variable=directory;]%s' % (directory))
+    print('##vso[task.setvariable variable=directory;]%s' % (directory))
     print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
 
   else:
