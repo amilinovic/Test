@@ -28,7 +28,7 @@ for addedfile in newfileslist:
     print(' Added file for databricks is: ' + addedfile)
 
     try:
-      shutil.copy(addedfile, dest)
+      shutil.copytree(src, dest)
     except shutil.SameFileError:
       print("Source and destination represents the same file.")
     except IsADirectoryError:
