@@ -27,7 +27,14 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
 
-    shutil.copy(addedfile, dest)
+    try:
+      shutil.copy(addedfile, dest)
+    except shutil.SameFileError:
+      print("Source and destination represents the same file.")
+    except IsADirectoryError:
+      print("Destination is a directory.")
+    except:
+      print("Error occurred while copying file.")
     # Removes file exists error
     # if os.path.exists(dest):
     #   shutil.rmtree(dest)
