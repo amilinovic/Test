@@ -14,7 +14,6 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 src = '/home/vsts/work/1/s'
 # Destination path
 dest = '/home/vsts/work/1/d/'
-print(newfileslist)
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
