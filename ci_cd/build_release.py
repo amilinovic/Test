@@ -14,7 +14,6 @@ newfileslist = newfiles.decode("utf-8").splitlines()
 src = '/home/vsts/work/1/s'
 # Destination path
 dest = '/home/vsts/work/1/d/'
-print(newfileslist)
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -26,15 +25,6 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-
-    # try:
-    #   shutil.move(addedfile, dest)
-    # except shutil.SameFileError:
-    #   print("Source and destination represents the same file.")
-    # except IsADirectoryError:
-    #   print("Destination is a directory.")
-    # except:
-    #   print("Error occurred while copying file.")
 
     if os.path.exists(dest):
       pass
