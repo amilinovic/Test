@@ -1,0 +1,63 @@
+parameters:
+- name: Environment
+  type: string
+  default: "EnvironmentParameter"
+- name: VariableGroup
+  type: string
+  default: "VariableGroup"
+
+jobs:
+  - deployment: ReleaseTo${{parameters.environment}}
+    environment: ${{parameters.environment}}
+    variables:
+    - group: ${{parameters.VariableGroup}}
+    strategy:
+      runOnce:    
+        deploy:
+          steps:
+          - download: current
+            artifact: 'marlinkpy'
+          - task: UsePythonVersion@0
+            displayName: 'Use Python 3.7'
+            inputs:
+              versionSpec: 3.7
+          # Install required Python modules.
+          - task: CmdLine@2 
+            displayName: 'Load Python Dependencies'
+            inputs:
+              script: pip3 install databricks-cli
+          # Configure databricks cli
+          - task: CmdLine@2
+            displayName: 'Configure databricks cli'
+            inputs: 
+              script: |
+                databricks configure --token <<EOF
+                $(DatabricksWorkspaceUri)
+                $(DatabricksPAT)
+                EOF
+          # Use databricks-cli to export marlinkpy 
+          - task: CmdLine@2
+            displayName: 'Export marlinkpy library to Azure Databricks'
+            inputs: 
+              script: |
+                databricks fs cp $(Pipeline.Workspace)/marlinkpy/dist/marlinkpy-0.1.1-py3-none-any.whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl --overwrite
+          # Use databricks-cli to export marlinkpy 
+          - task: CmdLine@2
+            displayName: 'Install library on cluster'
+            inputs: 
+              script: |
+                CLUSTER_OBJ=$(databricks clusters list --output JSON)
+                CLUSTER_NAME=$(echo "dbs-cluster-"${{parameters.environment}} | tr [:upper:] [:lower:])
+                CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
+                databricks clusters start --cluster-id $CLUSTER_ID
+                while true;
+                do
+                  CLUSTER_STATE=$(databricks clusters list --output JSON | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .state")
+                  if [ $CLUSTER_STATE == "RUNNING" ]
+                    then
+                      break
+                    else
+                      sleep 10s
+                    fi
+                done
+                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl
