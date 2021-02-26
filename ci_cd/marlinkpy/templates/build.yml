@@ -1,0 +1,25 @@
+jobs:
+- job: Build
+  pool:
+      name: Hosted Ubuntu 1604
+  workspace:
+    clean: all
+  steps:
+  - checkout: self
+  - task: UsePythonVersion@0
+    displayName: 'Use Python 3.7'
+    inputs:
+      versionSpec: 3.7
+  - task: CmdLine@2
+    displayName: 'Build marlinkpy library'
+    inputs: 
+      script: |
+        cd $(Pipeline.Workspace)/s/marlinkpy
+        source venv/Scripts/activate
+        pip install wheel
+        pip install setuptools
+        pip install twine
+        python setup.py bdist_wheel
+  - publish: $(Pipeline.Workspace)/s/marlinkpy
+    artifact: marlinkpy
+    displayName: Publish MarlinkPy library
