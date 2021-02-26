@@ -2,6 +2,7 @@ pr:
   branches:
     include:
     - master
+    - develop
     # - feature/marlinkpy/*
     # - feature/ci_cd/python_library/*
   # paths:
