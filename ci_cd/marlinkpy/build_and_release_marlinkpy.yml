@@ -5,7 +5,7 @@ pr:
     include:
     - master
     - develop
-    exlude:
+    exclude:
     - feature/*
     # - feature/marlinkpy/*
     # - feature/ci_cd/python_library/*
