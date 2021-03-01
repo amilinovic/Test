@@ -1,6 +1,15 @@
-pr:
-- master
-- develop
+resources:
+  repositories:
+  - repository: Test
+    type: GitHub
+    source: marlinknl/mart-dbs
+    pr: 
+      branches:
+      - master
+      - develop
+# pr:
+# - master
+# - develop
   # branches:
   #   include:
   #   - master
