@@ -1,19 +1,12 @@
-resources:
-  repositories:
-  - repository: Test
-    type: GitHub
-    source: marlinknl/mart-dbs
-    pr: 
-      branches:
-      - master
-      - develop
-# pr:
+pr:
 # - master
 # - develop
-  # branches:
-  #   include:
-  #   - master
-  #   - develop
+  branches:
+    include:
+    - master
+    - develop
+    exclude:
+    - feature/*
     # - feature/marlinkpy/*
     # - feature/ci_cd/python_library/*
   # paths:
