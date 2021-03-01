@@ -1,18 +1,10 @@
 pr:
-# - master
-# - develop
   branches:
     include:
     - master
     - develop
     exclude:
     - feature/*
-    # - feature/marlinkpy/*
-    # - feature/ci_cd/python_library/*
-  # paths:
-  #   include:
-  #   - marlinkpy/*
-  #   - ci_cd/python_library/*
     
 stages:
 - stage: Build
