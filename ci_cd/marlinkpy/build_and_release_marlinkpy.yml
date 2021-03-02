@@ -17,7 +17,7 @@ stages:
     - template: templates/release.yml
       parameters: 
         Environment: Tst
-        VariableGroup: MART-ACC
+        # VariableGroup: MART-ACC
 
 - stage: ReleaseToAcceptance
   dependsOn: ReleaseToTest
@@ -25,7 +25,7 @@ stages:
     - template: templates/release.yml
       parameters: 
         Environment: Acc
-        VariableGroup: MART-ACC
+        # VariableGroup: MART-ACC
 
 - stage: ReleaseToProduction
   dependsOn: ReleaseToAcceptance
@@ -33,4 +33,4 @@ stages:
     - template: templates/release.yml
       parameters: 
         Environment: Prd
-        VariableGroup: MART-PRD
+        # VariableGroup: MART-PRD
