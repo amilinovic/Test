@@ -25,3 +25,5 @@ stages:
     - template: templates/azure_release_pipeline.yml
       parameters:
         Environment: Prd
+
+
