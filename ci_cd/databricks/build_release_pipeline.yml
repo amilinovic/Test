@@ -4,7 +4,7 @@ pool:
 stages:
 
 - stage: BuildAndDeployToTst
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
+  # condition: eq(variables['Build.SourceBranch'], 'refs/heads/develop')
   jobs:
     - template: templates/azure_release_pipeline.yml
       parameters:
@@ -13,15 +13,18 @@ stages:
         # project_name: $(project_name)
 
 - stage: BuildAndDeployToAcc
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  dependsOn: BuildAndDeployToTst
   jobs:
     - template: templates/azure_release_pipeline.yml
       parameters:
         Environment: Acc
 
 - stage: BuildAndDeployToPrd
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  # condition: eq(variables['Build.SourceBranch'], 'refs/heads/master')
+  dependsOn: BuildAndDeployToAcc
   jobs:
     - template: templates/azure_release_pipeline.yml
       parameters:
         Environment: Prd
+
