@@ -2,15 +2,15 @@ parameters:
 - name: Environment
   type: string
   default: "EnvironmentParameter"
-- name: VariableGroup
-  type: string
-  default: "VariableGroup"
+# - name: VariableGroup
+  # type: string
+  # default: "VariableGroup"
 
 jobs:
   - deployment: ReleaseTo${{parameters.environment}}
     environment: ${{parameters.environment}}
-    variables:
-    - group: ${{parameters.VariableGroup}}
+    # variables:
+    # - group: ${{parameters.VariableGroup}}
     strategy:
       runOnce:    
         deploy:

@@ -31,8 +31,8 @@ jobs:
           inputs: 
             script: |
               databricks configure --token <<EOF
-              https://adb-1171646850907998.18.azuredatabricks.net/
-              dapi493ff0e96c95ea876cbd8d799ec4c30d-2
+              https://adb-1542076191847040.0.azuredatabricks.net/
+              dapi55d363f39ae62c3bfab47147858fe2ed-2
               EOF
 
         - task: CmdLine@2
