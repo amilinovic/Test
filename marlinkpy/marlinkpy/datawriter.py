@@ -1,12 +1,13 @@
 from marlinkpy import utility
-import json
-import csv
+import json, os
 from pyspark.sql.functions import col
 import pandas as pd
 
+from marlinkpy import utility
+import json, os, csv
+from pyspark.sql.functions import col
+
 def write_csv(df,output_layer,root_folder,object_name,process_mode,year_str,month_str,day_str):
-  # define output path for DataFrame
-  write_file_path = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.csv"
   # define the output path for schema metadata
   write_meta_path = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/metadata/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.txt"
   
@@ -26,20 +27,27 @@ def write_csv(df,output_layer,root_folder,object_name,process_mode,year_str,mont
     df = df.withColumn(column, col(column).cast("string"))
 
   # write file to cleanse layer
+  write_file_csv = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.csv"
+  write_file_path = f"/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}"
   (
     df
-    .toPandas()
-    .to_csv(
-      write_file_path
+    .coalesce(1)
+    .write
+    .csv(
+      path=write_file_path
+      ,mode="overwrite"
+      ,encoding="UTF-8"
+      ,header="true"
+      ,quote='"'
+      ,escape='"'
       ,sep=";"
-      ,header=True
-      ,index=False
-      ,quoting=csv.QUOTE_MINIMAL
-      ,escapechar='"'
-      ,doublequote=True
+      ,escapeQuotes=True
+      ,nullValue=u"\u0000"
+      ,emptyValue=u"\u0000"
     )
   )
-  # confirm writing of dataframe
+  os.system(f"cat /dbfs{write_file_path}/part* > {write_file_csv}")
+  
   print(f"Succesfully written DataFrame to {output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/")
 
 def write_json(collection,output_layer,root_folder,object_name,process_mode,year_str,month_str,day_str):  

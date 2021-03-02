@@ -5,7 +5,7 @@ def read_json(spark,input_layer,root_folder,object_name,process_mode,year_str,mo
   df = spark.read.json(read_file_path, multiLine =True, primitivesAsString=True)
   return df
 
-def read_csv(spark,input_layer,root_folder,object_name,process_mode,year_str,month_str,day_str,header="true",escape="",encoding="UTF-8",sep=";",lineSep=None,include_schema=False,timestampFormat="yyyy-MM-dd'T'HH:mm:ss[.SSSSSSS]",quote=None):
+def read_csv(spark,input_layer,root_folder,object_name,process_mode,year_str,month_str,day_str,header="true",encoding="UTF-8",lineSep="\u0085",sep="\u0001",quote="",escape="",include_schema=False):
   # define input path for DataFrame
   read_file_path = f"/mnt/{input_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.csv"
   if include_schema == True:
@@ -16,7 +16,7 @@ def read_csv(spark,input_layer,root_folder,object_name,process_mode,year_str,mon
     schema = file.read()
     file.close()
     # read df from input layer
-    df = spark.read.csv(read_file_path, schema=schema, inferSchema="false",header=header,encoding=encoding,sep=sep,lineSep=lineSep,timestampFormat=timestampFormat,quote=quote,escape=escape)
+    df = spark.read.csv(read_file_path,schema=schema,header=header,encoding=encoding,sep=sep,lineSep=lineSep,quote=quote,escape=escape)
   else:
-    df = spark.read.csv(read_file_path, inferSchema="false",header=header,encoding=encoding,sep=sep,lineSep=lineSep,timestampFormat=timestampFormat,quote=quote,escape=escape)
+    df = spark.read.csv(read_file_path,inferSchema="false",header=header,encoding=encoding,sep=sep,lineSep=lineSep,quote=quote,escape=escape)
   return df
