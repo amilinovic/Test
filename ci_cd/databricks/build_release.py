@@ -7,8 +7,11 @@ import shutil
 # Check git difference
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
+print(newfiles)
+
 # Added files to list
 newfileslist = newfiles.decode("utf-8").splitlines()
+print(newfileslist)
 
 # Source path
 src = '/home/vsts/work/1/s'
