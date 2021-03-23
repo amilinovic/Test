@@ -11,7 +11,7 @@ jobs:
       deploy:
         steps:
         - checkout: self
-        - script: python3 ci_cd/databricks/build_release.py
+        - script: python3 ci_cd/databricks/templates/build_release.py
           workingDirectory: $(Build.SourcesDirectory)
           continueOnError: true
 
@@ -31,8 +31,8 @@ jobs:
           inputs: 
             script: |
               databricks configure --token <<EOF
-              https://adb-1542076191847040.0.azuredatabricks.net/
-              dapi55d363f39ae62c3bfab47147858fe2ed-2
+              https://adb-5149898694294657.17.azuredatabricks.net/
+              dapi6088d929a9e1280a57d013c172d661bd-2
               EOF
 
         - task: CmdLine@2
