@@ -1,0 +1,52 @@
+parameters:
+- name: Environment
+  type: string
+  default: "EnvironmentName"
+
+jobs:
+- deployment: DeployTo${{parameters.Environment}}
+  environment: ${{parameters.Environment}}
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+        # - script: python3 ci_cd/databricks/templates/build_release.py
+        #   workingDirectory: $(Build.SourcesDirectory)
+        #   continueOnError: true
+
+        - task: UsePythonVersion@0
+          displayName: 'Use Python 3.7'
+          inputs:
+            versionSpec: 3.7
+
+        # Install required Python modules.
+        - task: CmdLine@2 
+          displayName: 'Load Python Dependencies'
+          inputs:
+            script: pip3 install databricks-cli
+
+        - task: CmdLine@2
+          displayName: 'Delete workspace'
+          inputs:
+            script: databricks workspace delete /${{parameters.Environment}}
+
+        - task: CmdLine@2
+          displayName: 'Configure databricks cli'
+          inputs: 
+            script: |
+              databricks configure --token <<EOF
+              https://adb-5149898694294657.17.azuredatabricks.net/
+              dapi6088d929a9e1280a57d013c172d661bd-2
+              EOF
+
+        - task: CmdLine@2
+          displayName: 'Delete workspace'
+          inputs:
+            script: databricks workspace delete /${{parameters.Environment}} -r
+
+        # - task: CmdLine@2
+        #   displayName: 'Export Databricks Workspace'
+        #   continueOnError: true
+        #   inputs: 
+        #     script: databricks workspace import_dir $(Pipeline.Workspace)/s/databricks /${{parameters.Environment}} -o

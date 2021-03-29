@@ -1,0 +1,20 @@
+pool:
+  name: "Hosted Ubuntu 1604"
+
+stages:
+- stage: BuildAndDeployToAcc
+  jobs:
+    - template: templates/weekly_release_pipeline.yml
+      parameters:
+        Environment: Acc
+        # VariableGroup: MART-ACC
+        # project_name: $(project_name)
+
+- stage: BuildAndDeployToPrd
+  dependsOn: BuildAndDeployToAcc
+  jobs:
+    - template: templates/weekly_release_pipeline.yml
+      parameters:
+        Environment: Prd
+        # VariableGroup: MART-ACC
+        # project_name: $(project_name)
