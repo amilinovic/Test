@@ -37,6 +37,7 @@ jobs:
 
         - task: CmdLine@2
           displayName: 'Delete workspace'
+          continueOnError: true
           inputs:
             script: databricks workspace delete /${{parameters.Environment}} -r
 
