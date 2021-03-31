@@ -41,8 +41,8 @@ jobs:
           inputs:
             script: databricks workspace delete /${{parameters.Environment}} -r
 
-        # - task: CmdLine@2
-        #   displayName: 'Export Databricks Workspace'
-        #   continueOnError: true
-        #   inputs: 
-        #     script: databricks workspace import_dir $(Pipeline.Workspace)/s/databricks /${{parameters.Environment}} -o
+        - task: CmdLine@2
+          displayName: 'Export Databricks Workspace'
+          continueOnError: true
+          inputs: 
+            script: databricks workspace import_dir $(Pipeline.Workspace)/s/databricks /${{parameters.Environment}} -o
