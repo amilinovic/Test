@@ -27,11 +27,6 @@ jobs:
             script: pip3 install databricks-cli
 
         - task: CmdLine@2
-          displayName: 'Delete workspace'
-          inputs:
-            script: databricks workspace delete /${{parameters.Environment}}
-
-        - task: CmdLine@2
           displayName: 'Configure databricks cli'
           inputs: 
             script: |
