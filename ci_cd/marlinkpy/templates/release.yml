@@ -32,8 +32,8 @@ jobs:
             inputs: 
               script: |
                 databricks configure --token <<EOF
-                https://adb-1542076191847040.0.azuredatabricks.net/
-                dapi55d363f39ae62c3bfab47147858fe2ed-2
+                https://adb-7437499612433995.15.azuredatabricks.net/
+                dapi05ca08b0b67d4b046de274079934d6f0-2
                 EOF
           # Use databricks-cli to export marlinkpy 
           - task: CmdLine@2
@@ -49,15 +49,4 @@ jobs:
                 CLUSTER_OBJ=$(databricks clusters list --output JSON)
                 CLUSTER_NAME=$(echo "test-cluster" | tr [:upper:] [:lower:])
                 CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
-                databricks clusters start --cluster-id $CLUSTER_ID
-                while true;
-                do
-                  CLUSTER_STATE=$(databricks clusters list --output JSON | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .state")
-                  if [ $CLUSTER_STATE == "RUNNING" ]
-                    then
-                      break
-                    else
-                      sleep 10s
-                    fi
-                done
-                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl
+                databricks clusters restart --cluster-id $CLUSTER_ID

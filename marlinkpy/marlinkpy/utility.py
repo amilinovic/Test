@@ -1,6 +1,40 @@
 import os
 import re
 
+def extract_file_date(path_str):
+  path_list = path_str.split("/")
+  new_path_list = []
+  for element in path_list:
+    try:
+      int(element)
+      new_path_list.append(element)
+    except:
+      pass
+  file_date = "".join(new_path_list)
+  return file_date
+
+def generate_delta_path(path_str):
+  # split path on "/"
+  path_list = path_str.split("/")
+  # extract last element of path_list and 0th element after splitting on "_"
+  object_name = path_list[-1].split('_')[0]
+  # Initialise list
+  new_path_list = []
+  # If element is not integer add to list, else break loop
+  for i in range(len(path_list)):
+    try:
+      int(path_list[i])
+      break
+    except:
+      if (path_list[i] != object_name) and (i != len(path_list)-1):
+        new_path_list.append(path_list[i])
+      else:
+        pass
+  # generate new string
+  new_path_str = "/".join(new_path_list) + f"/delta/{object_name}"
+  
+  return new_path_str
+
 def create_directory(path_str):
   # create list by splitting string based on slash icon
   path_list = path_str.split('/')[:-1]
@@ -82,3 +116,6 @@ def usql_to_pyspark_script(query_string, column_names):
     
     # print output to notebook
     print(query_string)
+
+def hello():
+    print("Hello World #2")

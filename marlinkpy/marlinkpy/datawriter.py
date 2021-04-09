@@ -1,16 +1,13 @@
 from marlinkpy import utility
 import json, os
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, lit
 import pandas as pd
 
-from marlinkpy import utility
-import json, os, csv
-from pyspark.sql.functions import col
-
-def write_csv(df,output_layer,root_folder,object_name,process_mode,year_str,month_str,day_str):
+def write_csv(df,output_layer,file_path):
   # define the output path for schema metadata
-  write_meta_path = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/metadata/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.txt"
-  
+  write_meta_path = f"/dbfs/mnt/{output_layer}/metadata/{file_path}.txt"
+  write_file_csv =  f"/dbfs/mnt/{output_layer}/{file_path}.csv"
+  write_file_path = f"/mnt/{output_layer}/{file_path}"
   # create directoy paths to prevent FileNotFound errors
   utility.create_directory(write_file_path)
   utility.create_directory(write_meta_path)
@@ -25,10 +22,7 @@ def write_csv(df,output_layer,root_folder,object_name,process_mode,year_str,mont
   special_columns = [x for (x,y) in df.dtypes if y in ["timestamp","int","long"]]
   for column in special_columns:
     df = df.withColumn(column, col(column).cast("string"))
-
-  # write file to cleanse layer
-  write_file_csv = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.csv"
-  write_file_path = f"/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}"
+  
   (
     df
     .coalesce(1)
@@ -48,15 +42,59 @@ def write_csv(df,output_layer,root_folder,object_name,process_mode,year_str,mont
   )
   os.system(f"cat /dbfs{write_file_path}/part* > {write_file_csv}")
   
-  print(f"Succesfully written DataFrame to {output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/")
+  print(f"Succesfully written DataFrame to {file_path}")
 
-def write_json(collection,output_layer,root_folder,object_name,process_mode,year_str,month_str,day_str):  
+def write_delta(df,output_layer,file_path, mode="overwrite", partitionBy=[]):
+  # format write file path
+  write_file_path = f"/mnt/{output_layer}/{file_path}"
+  if len(partitionBy) >= 1:
+    # write parquet using native spark
+    (   
+      df
+      .write
+      .format("delta")
+      .option("mergeSchema", "true")
+      .mode(mode)
+      .partitionBy(partitionBy)
+      .save(write_file_path)
+    )
+    # confirm writing of dataframe
+    print(f"Succesfully written DataFrame to {write_file_path}")
+  else:
+    # write parquet using native spark
+    (   
+      df
+      .write
+      .format("delta")
+      .option("mergeSchema", "true")
+      .mode(mode)
+      .save(write_file_path)
+    )
+    # confirm writing of dataframe
+    print(f"Succesfully written DataFrame to {write_file_path}")
+
+def write_parquet(df,output_layer,file_path, mode="overwrite"):
+  # format write file path
+  write_file_path = f"/mnt/{output_layer}/{file_path}"
+  # write parquet using native spark
+  (   
+    df
+    .write
+    .parquet(
+      path=write_file_path
+      ,mode=mode
+      )
+  )
+  # confirm writing of dataframe
+  print(f"Succesfully written DataFrame to {file_path}")
+
+def write_json(collection,output_layer,file_path):  
   # define file path
-  write_file_path = f"/dbfs/mnt/{output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/{object_name}_{process_mode}_{year_str}_{month_str}_{day_str}.json"
+  write_file_path = f"/dbfs/mnt/{output_layer}/{file_path}.json"
   # create directoy paths to prevent FileNotFound errors
   utility.create_directory(write_file_path)
   # write to datalake
   with open(write_file_path, "w") as outfile:
     json.dump(collection, outfile)
   # confirm writing of dataframe
-  print(f"Succesfully written JSON to {output_layer}/{root_folder}/{year_str}/{month_str}/{day_str}/")
+  print(f"Succesfully written JSON to {file_path}")
