@@ -32,8 +32,8 @@ jobs:
             inputs: 
               script: |
                 databricks configure --token <<EOF
-                https://adb-7437499612433995.15.azuredatabricks.net/
-                dapi05ca08b0b67d4b046de274079934d6f0-2
+                https://adb-4885809453486256.16.azuredatabricks.net/
+                dapi254bc815c52e8574d24b1402a381cca0-2
                 EOF
           # Use databricks-cli to export marlinkpy 
           - task: CmdLine@2
