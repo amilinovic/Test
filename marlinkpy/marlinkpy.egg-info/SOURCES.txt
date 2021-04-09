@@ -6,6 +6,7 @@ marlinkpy/datareader.py
 marlinkpy/datatypes.py
 marlinkpy/datawriter.py
 marlinkpy/utility.py
+marlinkpy/validator.py
 marlinkpy.egg-info/PKG-INFO
 marlinkpy.egg-info/SOURCES.txt
 marlinkpy.egg-info/dependency_links.txt

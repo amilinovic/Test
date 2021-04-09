@@ -1,0 +1,1 @@
+{"extensions": {"python.details": {"contacts": [{"name": "Derrick Bakhuis, Motion10", "role": "author"}], "document_names": {"description": "DESCRIPTION.rst"}}}, "generator": "bdist_wheel (0.30.0)", "license": "MIT", "metadata_version": "2.0", "name": "marlinkpy", "summary": "Libraries to work with in databricks", "version": "0.1.1"}
