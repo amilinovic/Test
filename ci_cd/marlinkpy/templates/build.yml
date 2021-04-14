@@ -20,6 +20,6 @@ jobs:
         pip install setuptools
         pip install twine
         python setup.py bdist_wheel
-  # - publish: $(Pipeline.Workspace)/s/marlinkpy
-  #   artifact: python_library
-  #   displayName: Publish MarlinkPy library
+  - publish: $(Pipeline.Workspace)/s/marlinkpy
+    artifact: python_library
+    displayName: Publish MarlinkPy library

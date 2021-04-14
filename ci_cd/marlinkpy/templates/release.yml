@@ -15,8 +15,8 @@ jobs:
       runOnce:    
         deploy:
           steps:
-          # - download: current
-          #   artifact: 'python_library'
+          - download: current
+            artifact: 'python_library'
           - task: UsePythonVersion@0
             displayName: 'Use Python 3.7'
             inputs:
@@ -40,8 +40,7 @@ jobs:
             displayName: 'Export marlinkpy library to Azure Databricks'
             inputs: 
               script: |
-                cd $(Pipeline.Workspace)/s/marlinkpy
-                databricks fs cp $(Pipeline.Workspace)/s/marlinkpy/dist/marlinkpy-0.1.1-py3-none-any.whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl --overwrite
+                databricks fs cp $(Pipeline.Workspace)/python_library/dist/marlinkpy-0.1.1-py3-none-any.whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl --overwrite
           # Use databricks-cli to export marlinkpy 
           - task: CmdLine@2
             displayName: 'Install marlinkpy library on cluster'
