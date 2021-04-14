@@ -13,18 +13,18 @@ stages:
         Environment: Tst
         # VariableGroup: MART-ACC
 
-- stage: ReleaseToAcceptance
-  dependsOn: ReleaseToTest
-  jobs:
-    - template: templates/release.yml
-      parameters: 
-        Environment: Acc
-        # VariableGroup: MART-ACC
+# - stage: ReleaseToAcceptance
+#   dependsOn: ReleaseToTest
+#   jobs:
+#     - template: templates/release.yml
+#       parameters: 
+#         Environment: Acc
+#         # VariableGroup: MART-ACC
 
-- stage: ReleaseToProduction
-  dependsOn: ReleaseToAcceptance
-  jobs:
-    - template: templates/release.yml
-      parameters: 
-        Environment: Prd
-        # VariableGroup: MART-PRD
+# - stage: ReleaseToProduction
+#   dependsOn: ReleaseToAcceptance
+#   jobs:
+#     - template: templates/release.yml
+#       parameters: 
+#         Environment: Prd
+#         # VariableGroup: MART-PRD
