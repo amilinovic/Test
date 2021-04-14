@@ -15,8 +15,8 @@ jobs:
       runOnce:    
         deploy:
           steps:
-          - download: current
-            artifact: 'python_library'
+          # - download: current
+          #   artifact: 'python_library'
           - task: UsePythonVersion@0
             displayName: 'Use Python 3.7'
             inputs:
