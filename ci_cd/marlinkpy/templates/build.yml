@@ -14,12 +14,12 @@ jobs:
     displayName: 'Build marlinkpy library'
     inputs: 
       script: |
-#        cd $(Pipeline.Workspace)/s/marlinkpy
+       cd $(Pipeline.Workspace)/s/marlinkpy
 #        source venv/Scripts/activate
         pip install wheel
         pip install setuptools
         pip install twine
-        python setup.py bdist_wheel
+        python setup.py sdist
   - publish: $(Pipeline.Workspace)/s/marlinkpy
     artifact: python_library
     displayName: Publish MarlinkPy library
