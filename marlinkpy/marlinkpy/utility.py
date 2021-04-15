@@ -119,3 +119,6 @@ def usql_to_pyspark_script(query_string, column_names):
 
 def hello():
     print("Hello World #4")
+
+def hello2():
+    print("Hello World #4")
