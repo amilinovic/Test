@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 setup(
     # Name of package
     name='marlinkpy',
-    packages=find_packages(include=['marlinkpy']),
+    packages=['marlinkpy'],
     version='0.1.1',
     description='Libraries to work with in databricks',
     author='Derrick Bakhuis, Motion10',
