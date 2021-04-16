@@ -43,7 +43,7 @@ steps:
 #     publishRunAttachments: true
 
 - script: |
-    cd $(Build.Repository.LocalPath)/libraries/python/dbxdemo
+    cd $(Build.Repository.LocalPath)/marlinkpy/marlinkpy #/libraries/python/dbxdemo
     python3 setup.py sdist bdist_wheel
     ls dist/
   displayName: 'Build Python Wheel for Libs'
@@ -52,10 +52,10 @@ steps:
     git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)
 
     mkdir -p $(Build.BinariesDirectory)/libraries/python/libs
-    cp $(Build.Repository.LocalPath)/libraries/python/dbxdemo/dist/*.* $(Build.BinariesDirectory)/libraries/python/libs
+    cp $(Build.Repository.LocalPath)/marlinkpy/dist/*.* $(Build.BinariesDirectory)/libraries/python/libs
 
-    mkdir -p $(Build.BinariesDirectory)/cicd-scripts
-    cp $(Build.Repository.LocalPath)/cicd-scripts/*.* $(Build.BinariesDirectory)/cicd-scripts
+    # mkdir -p $(Build.BinariesDirectory)/cicd-scripts
+    # cp $(Build.Repository.LocalPath)/cicd-scripts/*.* $(Build.BinariesDirectory)/cicd-scripts
 
   displayName: 'Get Changes'
 
