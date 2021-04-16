@@ -29,8 +29,8 @@ jobs:
     persistCredentials: true
     clean: true
 
-  - script: git checkout release
-    displayName: 'Get Latest Branch'
+  # - script: git checkout release
+  #   displayName: 'Get Latest Branch'
 
   # - script: |
   #     python -m pytest --junit-xml=$(Build.Repository.LocalPath)/logs/TEST-LOCAL.xml
