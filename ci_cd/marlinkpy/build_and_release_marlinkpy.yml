@@ -3,7 +3,7 @@
 stages:
 - stage: Build
   jobs:
-    - template: templates/newBuild.yml
+    - template: templates/new_build.yml
 
 # - stage: ReleaseToTest
 #   dependsOn: Build

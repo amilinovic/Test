@@ -1,7 +1,7 @@
 # trigger:
 # - release
 jobs:
-- job: New build
+- job: newBuild
   pool:
     name: Hosted Ubuntu 1604
 
