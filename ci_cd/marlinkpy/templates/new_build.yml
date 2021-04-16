@@ -56,7 +56,7 @@ jobs:
       cp $(Build.Repository.LocalPath)/marlinkpy/dist/*.* $(Build.BinariesDirectory)/libraries/python/libs
 
       mkdir -p $(Build.BinariesDirectory)/cicd-scripts
-      cp $(Build.Repository.LocalPath)/ci_cd/marlinky/script/*.* $(Build.BinariesDirectory)/cicd-scripts
+      cp $(Build.Repository.LocalPath)/marlinkpy/lib-script/*.* $(Build.BinariesDirectory)/cicd-scripts
 
     displayName: 'Get Changes'
 
