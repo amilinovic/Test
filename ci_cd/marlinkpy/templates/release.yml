@@ -50,16 +50,25 @@ jobs:
             displayName: 'Install marlinkpy library on cluster'
             inputs: 
               script: |
-                CLUSTER_OBJ=$(databricks clusters list --output JSON)
-                CLUSTER_NAME=$(echo "test-cluster" | tr [:upper:] [:lower:])
-                CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
+                curl -X POST https://https://adb-4885809453486256.16.azuredatabricks.net/api/2.0/libraries/install -d '
                 {
-                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
-                } || { 
-                databricks clusters start --cluster-id $CLUSTER_ID
-                sleep 5m
-                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
-                }
+                  "cluster_id": "10201-my-cluster",
+                  "libraries": [
+                    {
+                      "whl": dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
+                    },
+                  ]
+                }'
+                # CLUSTER_OBJ=$(databricks clusters list --output JSON)
+                # CLUSTER_NAME=$(echo "test-cluster" | tr [:upper:] [:lower:])
+                # CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
+                # {
+                # databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
+                # } || { 
+                # databricks clusters start --cluster-id $CLUSTER_ID
+                # sleep 5m
+                # databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
+                # }
           # Use databricks-cli to import open source libraries
           - task: CmdLine@2
             displayName: 'Install other libraries and packages'
