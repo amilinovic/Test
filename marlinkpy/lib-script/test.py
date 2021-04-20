@@ -3,7 +3,7 @@
 import subprocess
 
 cd /home/vsts/work/1/s/marlinkpy
-source venv/Scripts/activate
+# source venv/Scripts/activate
 pip install wheel
 pip install setuptools
 pip install twine
