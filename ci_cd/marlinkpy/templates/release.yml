@@ -50,7 +50,7 @@ jobs:
             displayName: 'Install marlinkpy library on cluster'
             inputs: 
               script: |
-                curl -X POST https://https://adb-4885809453486256.16.azuredatabricks.net/api/2.0/libraries/install -d '
+                curl -X POST https://adb-4885809453486256.16.azuredatabricks.net/api/2.0/libraries/install -d '
                 {
                   "cluster_id": "10201-my-cluster",
                   "libraries": [
