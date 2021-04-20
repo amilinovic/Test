@@ -13,13 +13,13 @@ jobs:
   - task: CmdLine@2
     displayName: 'Build marlinkpy library'
     inputs: 
-      script: python3 marlinkpy/lib-script/test.py #|
-        # cd $(Pipeline.Workspace)/s/marlinkpy
-        # source venv/Scripts/activate
-        # pip install wheel
-        # pip install setuptools
-        # pip install twine
-        # python setup.py bdist_wheel
+      script: |  #python3 marlinkpy/lib-script/test.py
+        cd $(Pipeline.Workspace)/s/marlinkpy
+        source venv/Scripts/activate
+        pip install wheel
+        pip install setuptools
+        pip install twine
+        python setup.py bdist_wheel
   - publish: $(Pipeline.Workspace)/s/marlinkpy
     artifact: python_library
     displayName: Publish MarlinkPy library
