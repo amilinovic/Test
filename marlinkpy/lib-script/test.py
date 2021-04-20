@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/bash
 
-import subprocess
+# import subprocess
 
 cd /home/vsts/work/1/s/marlinkpy
 # source venv/Scripts/activate
@@ -10,5 +10,7 @@ pip install twine
 python setup.py sdist bdist_wheel
 
 var = subprocess.check_output('git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)')
+
+echo $var
 
 #newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
