@@ -4,10 +4,10 @@
 
 cd /home/vsts/work/1/s/marlinkpy
 # source venv/Scripts/activate
-pip install wheel
-pip install setuptools
-pip install twine
-python setup.py sdist bdist_wheel
+pip3 install wheel
+pip3 install setuptools
+pip3 install twine
+python3 setup.py sdist bdist_wheel
 
 var = subprocess.check_output('git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)')
 
