@@ -41,7 +41,8 @@ jobs:
             inputs: 
               script: |
                 databricks fs cp $(Pipeline.Workspace)/python_library/dist/marlinkpy-0.1.1-py3-none-any.whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl --overwrite
-                databricks fs ls -l
+                databricks fs ls -l /FileStore
+                databricks fs ls -l /FileStore/jars
           # Use databricks-cli to export marlinkpy 
           - task: CmdLine@2
             displayName: 'Install marlinkpy library on cluster'
