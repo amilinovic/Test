@@ -54,11 +54,11 @@ jobs:
                 CLUSTER_NAME=$(echo "test-cluster" | tr [:upper:] [:lower:])
                 CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
                 {
-                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl
+                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
                 } || { 
                 databricks clusters start --cluster-id $CLUSTER_ID
                 sleep 5m
-                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/jars/marlinkpy-0.1.1-py3-none-any.whl
+                databricks libraries install --cluster-id $CLUSTER_ID --whl dbfs:/FileStore/libs/marlinkpy-0.1.1-py3-none-any.whl
                 }
           # Use databricks-cli to import open source libraries
           - task: CmdLine@2
