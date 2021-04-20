@@ -13,7 +13,7 @@ jobs:
   - task: CmdLine@2
     displayName: 'Build marlinkpy library'
     inputs: 
-      script: python3 marlink/lib-script/test.py #|
+      script: python3 marlinkpy/lib-script/test.py #|
         # cd $(Pipeline.Workspace)/s/marlinkpy
         # source venv/Scripts/activate
         # pip install wheel
