@@ -25,7 +25,9 @@ jobs:
           - task: CmdLine@2 
             displayName: 'Load Python Dependencies'
             inputs:
-              script: pip3 install databricks-cli
+              script: |
+                pip3 install databricks-cli
+                pip3 install azure-databricks-api
           # Configure databricks cli
           - task: CmdLine@2
             displayName: 'Configure databricks cli'
