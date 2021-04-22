@@ -50,7 +50,7 @@ jobs:
     displayName: 'Build Python Wheel for Libs'
 
   - script: |
-      check=git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)
+      check=('git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)')
       echo $check
 
       mkdir -p $(Build.BinariesDirectory)/libraries/python/libs
