@@ -50,7 +50,8 @@ jobs:
     displayName: 'Build Python Wheel for Libs'
 
   - script: |
-      git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)
+      check=git diff --name-only --diff-filter=AMR HEAD^1 HEAD | xargs -I '{}' cp --parents -r '{}' $(Build.BinariesDirectory)
+      echo $check
 
       mkdir -p $(Build.BinariesDirectory)/libraries/python/libs
       cp $(Build.Repository.LocalPath)/marlinkpy/dist/*.* $(Build.BinariesDirectory)/libraries/python/libs
