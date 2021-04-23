@@ -50,7 +50,7 @@ jobs:
             inputs: 
               script: |
                 CLUSTER_OBJ=$(databricks clusters list --output JSON)
-                CLUSTER_NAME=$(echo "test-$(cluster-prefix)" | tr [:upper:] [:lower:])
+                CLUSTER_NAME=$(echo "$(cluster-name)" | tr [:upper:] [:lower:])
                 echo $CLUSTER_NAME
                 CLUSTER_ID=$(echo $CLUSTER_OBJ | jq -r ".clusters[] | select(.cluster_name==\"$CLUSTER_NAME\") | .cluster_id")
                 {
