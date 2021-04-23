@@ -46,7 +46,7 @@ jobs:
   - script: |
       cd $(Build.Repository.LocalPath)/marlinkpy #/libraries/python/dbxdemo
       python3 setup.py sdist bdist_wheel
-      python3 marlinkpy/lib-script/test.sh
+      python3 lib-script/test.sh
       ls dist/
     displayName: 'Build Python Wheel for Libs'
 
