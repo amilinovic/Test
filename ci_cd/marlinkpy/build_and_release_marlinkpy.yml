@@ -5,12 +5,12 @@ stages:
   jobs:
     - template: templates/new_build.yml
 
-# - stage: ReleaseToTest
-#   dependsOn: Build
-#   jobs:
-#     - template: templates/release.yml
-#       parameters: 
-#         Environment: Tst
+- stage: ReleaseToTest
+  dependsOn: Build
+  jobs:
+    - template: templates/release.yml
+      parameters: 
+        Environment: Tst
         # VariableGroup: MART-ACC
 
 # - stage: ReleaseToAcceptance
