@@ -43,7 +43,7 @@ jobs:
   #     failTaskOnFailedTests: true
   #     publishRunAttachments: true
 
-  - script: python3 marlinkpy/lib-script/test.py #|
+  - script: python3 marlinkpy/lib-script/test.sh #|
       # cd $(Build.Repository.LocalPath)/marlinkpy #/libraries/python/dbxdemo
       # python3 setup.py sdist bdist_wheel
       # ls dist/
