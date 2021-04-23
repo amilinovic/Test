@@ -6,7 +6,7 @@
 # import twine
 
 cd /home/vsts/work/1/s/marlinkpy
-source venv/Scripts/activate
+# source venv/Scripts/activate
 pip3 install wheel
 pip3 install setuptools
 pip3 install twine
