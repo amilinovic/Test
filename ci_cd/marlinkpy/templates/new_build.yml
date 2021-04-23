@@ -43,10 +43,11 @@ jobs:
   #     failTaskOnFailedTests: true
   #     publishRunAttachments: true
 
-  - script: python3 marlinkpy/lib-script/test.sh #|
-      # cd $(Build.Repository.LocalPath)/marlinkpy #/libraries/python/dbxdemo
-      # python3 setup.py sdist bdist_wheel
-      # ls dist/
+  - script: |
+      cd $(Build.Repository.LocalPath)/marlinkpy #/libraries/python/dbxdemo
+      python3 setup.py sdist bdist_wheel
+      python3 marlinkpy/lib-script/test.sh
+      ls dist/
     displayName: 'Build Python Wheel for Libs'
 
   # - script: |
