@@ -24,7 +24,7 @@ for addedfile in newfileslist:
   directory = name_directory[0]
   # Get a name of project
   project_name = name_directory[1]
-
+  print(name_directory)
   playbook_name = name_directory[2]
   
 
