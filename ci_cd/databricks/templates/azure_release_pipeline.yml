@@ -41,4 +41,5 @@ jobs:
           inputs: 
             script: |
               for add in $(files):
-                databricks workspace import $(Pipeline.Workspace)/d/$(files) /${{parameters.Environment}}/$(files) -o
+                databricks workspace import $(Pipeline.Workspace)/d/$add /${{parameters.Environment}}/$add -o
+              done
