@@ -30,16 +30,18 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    print(newfileslist[11:])
-  #   if os.path.exists(dest):
-  #     pass
-  #   else:
-  #     shutil.copytree(src, dest)
+    files = addedfile[11:]
+    print(files)
+    if os.path.exists(dest):
+      pass
+    else:
+      shutil.copytree(src, dest)
 
   #   # Pass variables from script to azure devops pipeline
   #   print('##vso[task.setvariable variable=directory;]%s' % (directory))
   #   print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
   #   print('##vso[task.setvariable variable=playbook_name;]%s' % (playbook_name))
+  print('##vso[task.setvariable variable=files;]%s' % (files))
 
   # else:
   #   print('No added files to databricks dir.')
