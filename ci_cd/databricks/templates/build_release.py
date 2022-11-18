@@ -26,7 +26,7 @@ for addedfile in newfileslist:
   project_name = name_directory[1]
   print(name_directory)
   playbook_name = name_directory[2]
-  
+  files = []
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
