@@ -30,19 +30,19 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
+    print(newfileslist[11:])
+  #   if os.path.exists(dest):
+  #     pass
+  #   else:
+  #     shutil.copytree(src, dest)
 
-    if os.path.exists(dest):
-      pass
-    else:
-      shutil.copytree(src, dest)
+  #   # Pass variables from script to azure devops pipeline
+  #   print('##vso[task.setvariable variable=directory;]%s' % (directory))
+  #   print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
+  #   print('##vso[task.setvariable variable=playbook_name;]%s' % (playbook_name))
 
-    # Pass variables from script to azure devops pipeline
-    print('##vso[task.setvariable variable=directory;]%s' % (directory))
-    print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
-    print('##vso[task.setvariable variable=playbook_name;]%s' % (playbook_name))
-
-  else:
-    print('No added files to databricks dir.')
+  # else:
+  #   print('No added files to databricks dir.')
 
 
 # Try to get name of playbook (playbook_name = name_directory[2]) and pass that name from script to azure devops pipeline. And add it to databricks workspace import_dir task in azure_release_pipeline.yml
