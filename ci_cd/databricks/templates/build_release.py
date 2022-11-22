@@ -30,7 +30,8 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    files = addedfile[11:]
+    # files = addedfile[11:]
+    files.append(addedfile[11:])
     print(files)
     if os.path.exists(dest):
       pass
