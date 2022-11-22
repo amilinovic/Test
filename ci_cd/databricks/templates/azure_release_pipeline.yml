@@ -40,6 +40,5 @@ jobs:
           continueOnError: true
           inputs: 
             script: |
-              for add in $(files):
-                databricks workspace import $(Pipeline.Workspace)/d/$add /${{parameters.Environment}}/$add -o
-              done
+              echo $(files)
+              
