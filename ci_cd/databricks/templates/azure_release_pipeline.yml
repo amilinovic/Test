@@ -35,12 +35,20 @@ jobs:
               dapi5f8f6498c8b24b7b499abc1d2be77d06-2
               EOF
 
-        - task: CmdLine@2
-          displayName: 'Export Databricks Workspace'
-          continueOnError: true
-          inputs: 
+        # - task: CmdLine@2
+        #   displayName: 'Export Databricks Workspace'
+        #   continueOnError: true
+        #   inputs: 
+        #     script: |
+        #       for add in $(files):
+        #       do
+        #         echo $add
+        #       done
+
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
             script: |
-              echo $(files)
               for add in $(files):
               do
                 echo $add
