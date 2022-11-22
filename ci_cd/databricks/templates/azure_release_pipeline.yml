@@ -40,7 +40,8 @@ jobs:
           continueOnError: true
           inputs: 
             script: |
-              for add in $(files[@]):
+              echo $(files)
+              for add in $(files):
               do
                 echo $add
               done
