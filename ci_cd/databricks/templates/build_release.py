@@ -17,6 +17,7 @@ print(newfileslist)
 src = '/home/vsts/work/1/s'
 # Destination path
 dest = '/home/vsts/work/1/d/'
+files = []
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -26,7 +27,6 @@ for addedfile in newfileslist:
   project_name = name_directory[1]
   print(name_directory)
   playbook_name = name_directory[2]
-  files = []
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
