@@ -11,9 +11,9 @@ jobs:
       deploy:
         steps:
         - checkout: self
-        - script: python3 ci_cd/databricks/templates/build_release.py
-          workingDirectory: $(Build.SourcesDirectory)
-          continueOnError: true
+        # - script: python3 ci_cd/databricks/templates/build_release.py
+        #   workingDirectory: $(Build.SourcesDirectory)
+        #   continueOnError: true
 
         - task: UsePythonVersion@0
           displayName: 'Use Python 3.7'
@@ -44,12 +44,10 @@ jobs:
         #       do
         #         echo $add
         #       done
+        - script: python3 ci_cd/databricks/templates/new_build_release.py
+          workingDirectory: $(Build.SourcesDirectory)
+          continueOnError: true
+          env: 
+            DATABRICKS_HOST: "https://adb-6038645435743090.10.azuredatabricks.net"
+            DATABRICKS_TOKEN: "dapif9c592e3955ee3cb7edaf8bc406e99e5-2"
 
-        - task: Bash@3
-          inputs:
-            targetType: 'inline'
-            script: |
-              for add in $(files):
-              do
-                echo $add
-              done
