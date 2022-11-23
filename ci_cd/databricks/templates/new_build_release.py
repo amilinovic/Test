@@ -39,9 +39,9 @@ for addedfile in newfileslist:
     print(' Added file for databricks is: ' + addedfile)
     # files = addedfile[11:]
     workspace_api = WorkspaceApi(api_client)
-    workspace_import = workspace_api.import_workspace(
+    workspace_import = workspace_api.import_workspace_dir(
       source_path = addedfile,
-      target_path = "/Tst/Test/",
+      target_path = "/Tst/"+project_name,
       language = "PYTHON",
       is_overwrite = "true",
       fmt = "SOURCE"
