@@ -40,10 +40,11 @@ for addedfile in newfileslist:
     # files = addedfile[11:]
     workspace_api = WorkspaceApi(api_client)
     workspace_import = workspace_api.import_workspace(
-      source_path= addedfile[11:],
-      target_path= "/Tst/Test/",
-      language= "PYTHON",
-      is_overwrite= "true"
+      source_path = addedfile[11:],
+      target_path = "/Tst/Test/",
+      language = "PYTHON",
+      is_overwrite = "true",
+      fmt = "SOURCE"
     )
 
 
