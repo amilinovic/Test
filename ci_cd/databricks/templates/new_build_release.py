@@ -40,10 +40,10 @@ for addedfile in newfileslist:
     # files = addedfile[11:]
     workspace_api = WorkspaceApi(api_client)
     workspace_import = workspace_api.import_workspace(
-      source_path= addedfile[11:], 
+      source_path= addedfile[11:],
       target_path= "/Tst/Test/",
       language= "PYTHON",
-      overwrite= "true"
+      is_overwrite= "true"
     )
 
 
@@ -55,15 +55,3 @@ for addedfile in newfileslist:
     #   pass
     # else:
     #   shutil.copytree(src, dest)
-
-  #   # Pass variables from script to azure devops pipeline
-  #   print('##vso[task.setvariable variable=directory;]%s' % (directory))
-  #   print('##vso[task.setvariable variable=project_name;]%s' % (project_name))
-  #   print('##vso[task.setvariable variable=playbook_name;]%s' % (playbook_name))
-  # print('##vso[task.setvariable variable=files;]%s' % (files))
-
-  # else:
-  #   print('No added files to databricks dir.')
-
-
-# Try to get name of playbook (playbook_name = name_directory[2]) and pass that name from script to azure devops pipeline. And add it to databricks workspace import_dir task in azure_release_pipeline.yml
