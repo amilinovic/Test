@@ -38,11 +38,9 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    if os.path.exists(dest):
-      pass
-    else:
-      shutil.copy(addedfile, dest)
-os.listdir(dest)
+    
+    shutil.copy(addedfile, dest)
+    os.listdir(dest)
 
     # workspace_api = WorkspaceApi(api_client)
     # workspace_import = workspace_api.import_workspace_dir(
