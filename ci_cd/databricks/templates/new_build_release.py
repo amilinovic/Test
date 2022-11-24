@@ -33,14 +33,22 @@ for addedfile in newfileslist:
   # Get a name of project
   project_name = name_directory[1]
   print(name_directory)
-  playbook_name = name_directory[2]
 
   if directory == 'databricks':
-    print(' Added file for databricks is: ' + addedfile)
+    isFile = os.path.isfile(src/directory/project_name/name_directory[2])
+    print(isFile)
     
-    shutil.copy(addedfile, dest)
-    files = os.listdir(dest)
-    print(files)
+
+
+
+
+
+
+    # print(' Added file for databricks is: ' + addedfile)
+    
+    # shutil.copy(addedfile, dest)
+    # files = os.listdir(dest)
+    # print(files)
 
     # workspace_api = WorkspaceApi(api_client)
     # workspace_import = workspace_api.import_workspace_dir(
