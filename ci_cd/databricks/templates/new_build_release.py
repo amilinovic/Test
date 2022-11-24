@@ -40,15 +40,25 @@ for addedfile in newfileslist:
     # shutil.copy(addedfile, dest)
     # files = os.listdir(dest)
     # print(files)
+    if name_directory[3] == None:
+      workspace_api = WorkspaceApi(api_client)
+      workspace_import = workspace_api.import_workspace(
+        source_path = src+"/"+addedfile,
+        target_path = "/Tst/"+project_name+"/"+name_directory[2],
+        is_overwrite = "true",
+        fmt = "SOURCE",
+        language = "PYTHON"
+      )
+    else:
+      workspace_api = WorkspaceApi(api_client)
+      workspace_import = workspace_api.import_workspace(
+        source_path = src+"/"+addedfile,
+        target_path = "/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3],
+        is_overwrite = "true",
+        fmt = "SOURCE",
+        language = "PYTHON"
+      )
 
-    workspace_api = WorkspaceApi(api_client)
-    workspace_import = workspace_api.import_workspace(
-      source_path = src+"/"+addedfile,
-      target_path = "/Tst/"+project_name,
-      is_overwrite = "true",
-      fmt = "SOURCE",
-      language = "PYTHON"
-    )
 
 
 os.mkdir('example_directory/')
