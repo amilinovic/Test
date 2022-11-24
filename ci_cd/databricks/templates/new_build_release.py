@@ -20,11 +20,11 @@ print(newfiles)
 newfileslist = newfiles.decode("utf-8").splitlines()
 print(newfileslist)
 
-# Source path
-src = '/home/vsts/work/1/s'
-# Destination path
-os.mkdir('/tmp/notebooks')
-dest = '/tmp/notebooks'
+# # Source path
+# src = '/home/vsts/work/1/s'
+# # Destination path
+# os.mkdir('/tmp/notebooks')
+# dest = '/tmp/notebooks'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -36,10 +36,7 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    
-    # shutil.copy(addedfile, dest)
-    # files = os.listdir(dest)
-    # print(files)
+# Tst must be env variable
     if len(name_directory) == 4:
       workspace_api = WorkspaceApi(api_client)
       workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+project_name+"/"+name_directory[2])
@@ -60,14 +57,3 @@ for addedfile in newfileslist:
         fmt = "SOURCE",
         language = "PYTHON"
       )
-
-
-
-os.mkdir('example_directory/')
-
-    # files.append(addedfile[11:])
-    # print(files)
-    # if os.path.exists(dest):
-    #   pass
-    # else:
-    #   shutil.copytree(src, dest)
