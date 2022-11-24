@@ -42,6 +42,7 @@ for addedfile in newfileslist:
     # print(files)
     if len(name_directory) == 4:
       workspace_api = WorkspaceApi(api_client)
+      workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+project_name+"/"+name_directory[2])
       workspace_import = workspace_api.import_workspace(
         source_path = src+"/"+addedfile,
         target_path = "/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3],
@@ -51,6 +52,7 @@ for addedfile in newfileslist:
       )
     else:
       workspace_api = WorkspaceApi(api_client)
+      workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+project_name)
       workspace_import = workspace_api.import_workspace(
         source_path = src+"/"+addedfile,
         target_path = "/Tst/"+project_name+"/"+name_directory[2],
