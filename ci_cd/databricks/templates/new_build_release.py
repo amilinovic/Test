@@ -42,7 +42,7 @@ for addedfile in newfileslist:
     workspace_import = workspace_api.import_workspace_dir(
       source_path = addedfile,
       target_path = "/Tst/"+project_name,
-      is_overwrite = "true",
+      overwrite = "true",
     )
 
 
