@@ -40,7 +40,7 @@ for addedfile in newfileslist:
     # shutil.copy(addedfile, dest)
     # files = os.listdir(dest)
     # print(files)
-    if len(name_directory) > 3:
+    if len(name_directory) < 3:
       workspace_api = WorkspaceApi(api_client)
       workspace_import = workspace_api.import_workspace(
         source_path = src+"/"+addedfile,
