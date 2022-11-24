@@ -38,14 +38,17 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
     # files = addedfile[11:]
-    workspace_api = WorkspaceApi(api_client)
-    workspace_import = workspace_api.import_workspace(
-      source_path = addedfile,
-      target_path = "/Tst/"+project_name,
-      language = "PYTHON",
-      fmt = "SOURCE",
-      is_overwrite = "true"
-    )
+    if os.path.exists(dest):
+      pass
+    else:
+      shutil.copytree(src, dest)
+      workspace_api = WorkspaceApi(api_client)
+      workspace_import = workspace_api.import_workspace_dir(
+        source_path = dest,
+        target_path = "/Tst/"+project_name,
+        overwrite = "true",
+        exclude_hidden_files = "false"
+      )
 
 
 
