@@ -23,7 +23,8 @@ print(newfileslist)
 # Source path
 src = '/home/vsts/work/1/s'
 # Destination path
-dest = '/home/vsts/work/1/d/'
+os.mkdir('/tmp/notebooks')
+dest = '/tmp/notebooks'
 files = []
 
 for addedfile in newfileslist:
@@ -38,20 +39,17 @@ for addedfile in newfileslist:
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
     # files = addedfile[11:]
-    if os.path.exists(dest):
-      pass
-    else:
-      shutil.copytree(src, dest)
-      workspace_api = WorkspaceApi(api_client)
-      workspace_import = workspace_api.import_workspace_dir(
-        source_path = dest,
-        target_path = "/Tst/"+project_name,
-        overwrite = "true",
-        exclude_hidden_files = "false"
-      )
+    shutil.copy(addedfile, dest)
+    workspace_api = WorkspaceApi(api_client)
+    workspace_import = workspace_api.import_workspace_dir(
+      source_path = dest,
+      target_path = "/Tst/"+project_name,
+      overwrite = "true",
+      exclude_hidden_files = "false"
+    )
 
 
-
+os.mkdir('example_directory/')
 
     # files.append(addedfile[11:])
     # print(files)
