@@ -47,8 +47,7 @@ for addedfile in newfileslist:
       target_path = "/Tst/"+project_name,
       is_overwrite = "true",
       fmt = "SOURCE",
-      language = "PYTHON",
-      exclude_hidden_files = "false"
+      language = "PYTHON"
     )
 
 
