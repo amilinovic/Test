@@ -40,8 +40,8 @@ for addedfile in newfileslist:
     # shutil.copy(addedfile, dest)
     # files = os.listdir(dest)
     # print(files)
-    if len(name_directory) < 3:
-      print("/Tst/"+project_name+"/"+name_directory[2])
+    if len(name_directory) == 4:
+      print("/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3])
       # workspace_api = WorkspaceApi(api_client)
       # workspace_import = workspace_api.import_workspace(
       #   source_path = src+"/"+addedfile,
@@ -51,7 +51,7 @@ for addedfile in newfileslist:
       #   language = "PYTHON"
       # )
     else:
-      print("/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3])
+      print("/Tst/"+project_name+"/"+name_directory[2])
       # workspace_api = WorkspaceApi(api_client)
       # workspace_import = workspace_api.import_workspace(
       #   source_path = src+"/"+addedfile,
