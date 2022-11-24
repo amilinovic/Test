@@ -35,28 +35,21 @@ for addedfile in newfileslist:
   print(name_directory)
 
   if directory == 'databricks':
-    isFile = os.path.isfile(src+"/"+directory+"/"+project_name+"/"+name_directory[2])
-    print(isFile)
-    
-
-
-
-
-
-
-    # print(' Added file for databricks is: ' + addedfile)
+    print(' Added file for databricks is: ' + addedfile)
     
     # shutil.copy(addedfile, dest)
     # files = os.listdir(dest)
     # print(files)
 
-    # workspace_api = WorkspaceApi(api_client)
-    # workspace_import = workspace_api.import_workspace_dir(
-    #   source_path = dest,
-    #   target_path = "/Tst/"+project_name,
-    #   overwrite = "true",
-    #   exclude_hidden_files = "false"
-    # )
+    workspace_api = WorkspaceApi(api_client)
+    workspace_import = workspace_api.import_workspace(
+      source_path = src+"/"+addedfile,
+      target_path = "/Tst/"+project_name,
+      is_overwrite = "true",
+      fmt = "SOURCE",
+      language = "PYTHON",
+      exclude_hidden_files = "false"
+    )
 
 
 os.mkdir('example_directory/')
