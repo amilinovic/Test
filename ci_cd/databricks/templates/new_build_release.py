@@ -38,18 +38,20 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    # files = addedfile[11:]
     if os.path.exists(dest):
       pass
     else:
       shutil.copy(addedfile, dest)
-    workspace_api = WorkspaceApi(api_client)
-    workspace_import = workspace_api.import_workspace_dir(
-      source_path = dest,
-      target_path = "/Tst/"+project_name,
-      overwrite = "true",
-      exclude_hidden_files = "false"
-    )
+    for entry in os.listdir(dest):
+      if os.path.isfile(os.path.join(dest, entry)):
+        print(entry)
+    # workspace_api = WorkspaceApi(api_client)
+    # workspace_import = workspace_api.import_workspace_dir(
+    #   source_path = dest,
+    #   target_path = "/Tst/"+project_name,
+    #   overwrite = "true",
+    #   exclude_hidden_files = "false"
+    # )
 
 
 os.mkdir('example_directory/')
