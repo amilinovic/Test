@@ -35,7 +35,7 @@ for addedfile in newfileslist:
   print(name_directory)
 
   if directory == 'databricks':
-    isFile = os.path.isfile(src/directory/project_name/name_directory[2])
+    isFile = os.path.isfile(src+"/"+directory+"/"+project_name+"/"+name_directory[2])
     print(isFile)
     
 
