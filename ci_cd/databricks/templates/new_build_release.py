@@ -43,7 +43,7 @@ for addedfile in newfileslist:
       source_path = addedfile,
       target_path = "/Tst/"+project_name,
       language = "PYTHON",
-      ftm = "SOURCE",
+      fmt = "SOURCE",
       is_overwrite = "true"
     )
 
