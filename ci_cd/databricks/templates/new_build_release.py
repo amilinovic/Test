@@ -42,9 +42,8 @@ for addedfile in newfileslist:
       pass
     else:
       shutil.copy(addedfile, dest)
-  for entry in os.listdir(dest):
-    if os.path.isfile(os.path.join(dest, entry)):
-      print(entry)
+      os.listdir(dest)
+
     # workspace_api = WorkspaceApi(api_client)
     # workspace_import = workspace_api.import_workspace_dir(
     #   source_path = dest,
