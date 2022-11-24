@@ -41,23 +41,25 @@ for addedfile in newfileslist:
     # files = os.listdir(dest)
     # print(files)
     if len(name_directory) < 3:
-      workspace_api = WorkspaceApi(api_client)
-      workspace_import = workspace_api.import_workspace(
-        source_path = src+"/"+addedfile,
-        target_path = "/Tst/"+project_name+"/"+name_directory[2],
-        is_overwrite = "true",
-        fmt = "SOURCE",
-        language = "PYTHON"
-      )
+      print("/Tst/"+project_name+"/"+name_directory[2])
+      # workspace_api = WorkspaceApi(api_client)
+      # workspace_import = workspace_api.import_workspace(
+      #   source_path = src+"/"+addedfile,
+      #   target_path = "/Tst/"+project_name+"/"+name_directory[2],
+      #   is_overwrite = "true",
+      #   fmt = "SOURCE",
+      #   language = "PYTHON"
+      # )
     else:
-      workspace_api = WorkspaceApi(api_client)
-      workspace_import = workspace_api.import_workspace(
-        source_path = src+"/"+addedfile,
-        target_path = "/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3],
-        is_overwrite = "true",
-        fmt = "SOURCE",
-        language = "PYTHON"
-      )
+      print(addedfile)
+      # workspace_api = WorkspaceApi(api_client)
+      # workspace_import = workspace_api.import_workspace(
+      #   source_path = src+"/"+addedfile,
+      #   target_path = "/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3],
+      #   is_overwrite = "true",
+      #   fmt = "SOURCE",
+      #   language = "PYTHON"
+      # )
 
 
 
