@@ -25,7 +25,6 @@ src = '/home/vsts/work/1/s'
 # Destination path
 os.mkdir('/tmp/notebooks')
 dest = '/tmp/notebooks'
-files = []
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
@@ -40,7 +39,8 @@ for addedfile in newfileslist:
     print(' Added file for databricks is: ' + addedfile)
     
     shutil.copy(addedfile, dest)
-    os.listdir(dest)
+    files = os.listdir(dest)
+    print(files)
 
     # workspace_api = WorkspaceApi(api_client)
     # workspace_import = workspace_api.import_workspace_dir(
