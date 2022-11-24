@@ -43,6 +43,7 @@ for addedfile in newfileslist:
       source_path = addedfile,
       target_path = "/Tst/"+project_name,
       overwrite = "true",
+      exclude_hidden_files = "false"
     )
 
 
