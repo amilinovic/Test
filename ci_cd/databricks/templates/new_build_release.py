@@ -42,7 +42,7 @@ for addedfile in newfileslist:
       pass
     else:
       shutil.copy(addedfile, dest)
-      os.listdir(dest)
+os.listdir(dest)
 
     # workspace_api = WorkspaceApi(api_client)
     # workspace_import = workspace_api.import_workspace_dir(
