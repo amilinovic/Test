@@ -51,7 +51,7 @@ for addedfile in newfileslist:
       #   language = "PYTHON"
       # )
     else:
-      print(addedfile)
+      print("/Tst/"+project_name+"/"+name_directory[2]+"/"+name_directory[3])
       # workspace_api = WorkspaceApi(api_client)
       # workspace_import = workspace_api.import_workspace(
       #   source_path = src+"/"+addedfile,
