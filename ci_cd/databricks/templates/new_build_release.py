@@ -28,7 +28,7 @@ src = '/home/vsts/work/1/s'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
-  files = addedfile[1:-1]
+  files = name_directory[1:-1]
   path = "/".join(files)
   print(files)
   print(path)
