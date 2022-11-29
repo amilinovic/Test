@@ -14,11 +14,11 @@ api_client = ApiClient(
 # Check git difference
 newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 
-print(newfiles)
+# print(newfiles)
 
 # Added files to list
 newfileslist = newfiles.decode("utf-8").splitlines()
-print(newfileslist)
+# print(newfileslist)
 
 # # Source path
 src = '/home/vsts/work/1/s'
@@ -28,8 +28,6 @@ src = '/home/vsts/work/1/s'
 
 for addedfile in newfileslist:
   name_directory = os.path.splitext(addedfile)[0].split("/")
-  files = name_directory[1:-1]
-  path = "/".join(files)
   # # Get name of his directory
   directory = name_directory[0]
   # # Get a name of project
@@ -38,6 +36,10 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
+    files = name_directory[1:-1]
+    path = "/".join(files)
+    print(files)
+    print(path)
 # Tst must be env variable
     # if len(name_directory) == 4:
     workspace_api = WorkspaceApi(api_client)
