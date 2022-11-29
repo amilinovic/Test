@@ -36,18 +36,18 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
-    target_path = name_directory[1:]
-    files = name_directory[1:-1]
-    path = "/".join(files)
-    print(files)
-    print(path)
+    # Create workspace path for creating directory in Databricks
+    workspace = name_directory[1:-1]
+    workspace_path = "/".join(workspace)
+    # Create target path for adding notebook to Databricks
+    target = name_directory[1:]
+    target_path = "/".join(target)
 # Tst must be env variable
-    # if len(name_directory) == 4:
     workspace_api = WorkspaceApi(api_client)
-    workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+path)
+    workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+workspace_path)
     workspace_import = workspace_api.import_workspace(
-      source_path = src+"/" + addedfile,
-      target_path = "/Tst/" + target_path,
+      source_path = src+"/"+addedfile,
+      target_path = "/Tst/"+target_path,
       is_overwrite = "true",
       fmt = "SOURCE",
       language = "PYTHON"
