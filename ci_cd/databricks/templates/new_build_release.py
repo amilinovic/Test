@@ -36,6 +36,7 @@ for addedfile in newfileslist:
 
   if directory == 'databricks':
     print(' Added file for databricks is: ' + addedfile)
+    target_path = name_directory[1:]
     files = name_directory[1:-1]
     path = "/".join(files)
     print(files)
@@ -45,8 +46,8 @@ for addedfile in newfileslist:
     workspace_api = WorkspaceApi(api_client)
     workspace_directory = workspace_api.mkdirs(workspace_path = "/Tst/"+path)
     workspace_import = workspace_api.import_workspace(
-      source_path = src+"/"+addedfile,
-      target_path = "/Tst/"+path,
+      source_path = src+"/" + addedfile,
+      target_path = "/Tst/" + target_path,
       is_overwrite = "true",
       fmt = "SOURCE",
       language = "PYTHON"
