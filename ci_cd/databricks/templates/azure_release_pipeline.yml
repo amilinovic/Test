@@ -50,4 +50,5 @@ jobs:
           env: 
             DATABRICKS_HOST: "https://adb-6038645435743090.10.azuredatabricks.net"
             DATABRICKS_TOKEN: "dapif9c592e3955ee3cb7edaf8bc406e99e5-2"
+            ENV: ${{parameters.Environment}}
 

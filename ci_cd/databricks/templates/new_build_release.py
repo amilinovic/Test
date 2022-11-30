@@ -12,11 +12,48 @@ api_client = ApiClient(
 )
 
 # Check git difference
-newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
+addfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
 removedfiles = subprocess.check_output('git diff --diff-filter=D --name-only HEAD^ HEAD',shell=True)
 
-print(newfiles)
-print(removedfiles)
+# Added files to list
+addfileslist = addfiles.decode("utf-8").splitlines()
+removedfileslist = removedfiles.decode("utf-8").splitlines()
+
+# Source path
+src = '/home/vsts/work/1/s'
+
+def add_files():
+  for addedfile in addfileslist:
+    name_directory = os.path.splitext(addedfile)[0].split("/")
+    # Get name of his directory
+    directory = name_directory[0]
+
+    if directory == 'databricks':
+      print(' Added file for databricks is: ' + addedfile)
+      # Create workspace path for creating directory in Databricks
+      workspace = name_directory[1:-1]
+      workspace_path = "/".join(workspace)
+      # Create target path for adding notebook to Databricks
+      target = name_directory[1:]
+      target_path = "/".join(target)
+      # Tst must be env variable
+      workspace_api = WorkspaceApi(api_client)
+      workspace_directory = workspace_api.mkdirs(workspace_path = "/"+os.getenv('ENV')+"/"+workspace_path)
+      workspace_import = workspace_api.import_workspace(
+        source_path = src+"/"+addedfile,
+        target_path = "/"+os.getenv('ENV')+"/"+target_path,
+        is_overwrite = "true",
+        fmt = "SOURCE",
+        language = "PYTHON"
+        )
+
+# print(add_files())
+
+
+
+
+
+
 
 # print(newfiles)
 
