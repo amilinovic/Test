@@ -17,19 +17,19 @@ removedfiles = subprocess.check_output('git diff --diff-filter=D --name-only HEA
 
 # Added files to list
 addfileslist = addfiles.decode("utf-8").splitlines()
-removedfileslist = removedfiles.decode("utf-8").splitlines()
+removefileslist = removedfiles.decode("utf-8").splitlines()
 
 # Source path
 src = '/home/vsts/work/1/s'
 
 def add_files():
-  for addedfile in addfileslist:
-    name_directory = os.path.splitext(addedfile)[0].split("/")
+  for added_file in addfileslist:
+    name_directory = os.path.splitext(added_file)[0].split("/")
     # Get name of his directory
     directory = name_directory[0]
 
     if directory == 'databricks':
-      print(' Added file for databricks is: ' + addedfile)
+      print(' Added file for databricks is: ' + added_file)
       # Create workspace path for creating directory in Databricks
       workspace = name_directory[1:-1]
       workspace_path = "/".join(workspace)
@@ -40,14 +40,31 @@ def add_files():
       workspace_api = WorkspaceApi(api_client)
       workspace_directory = workspace_api.mkdirs(workspace_path = "/"+os.getenv('ENV')+"/"+workspace_path)
       workspace_import = workspace_api.import_workspace(
-        source_path = src+"/"+addedfile,
+        source_path = src+"/"+added_file,
         target_path = "/"+os.getenv('ENV')+"/"+target_path,
         is_overwrite = "true",
         fmt = "SOURCE",
         language = "PYTHON"
         )
 
+def remove_files():
+  for removed_file in removefileslist:
+    name_directory = os.path.splitext(removed_file)[0].split("/")
+    # Get name of his directory
+    directory = name_directory[0]
+    notebook = name_directory[1:]
+    delete_notebook = "/".join(notebook)
+
+    if directory == 'databricks':
+      print(' Removed file from databricks is: ' + removed_file)
+      workspace_api = WorkspaceApi(api_client)
+      notebook_delete = workspace_api.delete(
+        workspace_path = "/"+os.getenv('ENV')+"/"+delete_notebook,
+        is_recursive = "false"
+      )
+
 print(add_files())
+print(remove_files())
 
 
 
