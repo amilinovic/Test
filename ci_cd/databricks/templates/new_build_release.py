@@ -12,8 +12,8 @@ api_client = ApiClient(
 )
 
 # Check git difference
-newfiles = subprocess.check_output('git diff --diff-filter=AM --name-only HEAD^ HEAD',shell=True)
-removedfiles = subprocess.check_output('git diff --diff-filter=R --name-only HEAD^ HEAD',shell=True)
+newfiles = subprocess.check_output('git diff --diff-filter=AMR --name-only HEAD^ HEAD',shell=True)
+removedfiles = subprocess.check_output('git diff --diff-filter=D --name-only HEAD^ HEAD',shell=True)
 
 print(newfiles)
 print(removedfiles)
