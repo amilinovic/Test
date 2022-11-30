@@ -47,7 +47,7 @@ def add_files():
         fmt = "SOURCE",
         language = "PYTHON"
         )
-  return ""
+  return "There is no files to add!"
 
 def remove_files():
   for removed_file in removefileslist:
@@ -66,6 +66,7 @@ def remove_files():
         workspace_path = "/"+os.getenv('ENV')+"/"+delete_notebook,
         is_recursive = "false"
       )
+  return "There is no files to remove!"
 
 print(add_files())
 print(remove_files())
