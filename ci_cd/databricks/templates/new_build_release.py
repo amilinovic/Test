@@ -2,7 +2,6 @@
 
 import os
 import subprocess
-import shutil
 from databricks_cli.sdk.api_client import ApiClient
 from databricks_cli.workspace.api import WorkspaceApi
 

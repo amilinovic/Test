@@ -11,9 +11,6 @@ jobs:
       deploy:
         steps:
         - checkout: self
-        # - script: python3 ci_cd/databricks/templates/build_release.py
-        #   workingDirectory: $(Build.SourcesDirectory)
-        #   continueOnError: true
 
         - task: UsePythonVersion@0
           displayName: 'Use Python 3.7'
@@ -26,24 +23,6 @@ jobs:
           inputs:
             script: pip3 install databricks-cli
 
-        # - task: CmdLine@2
-        #   displayName: 'Configure databricks cli'
-        #   inputs: 
-        #     script: |
-        #       databricks configure --token <<EOF
-        #       https://adb-2309064528945260.0.azuredatabricks.net/
-        #       dapi5f8f6498c8b24b7b499abc1d2be77d06-2
-        #       EOF
-
-        # - task: CmdLine@2
-        #   displayName: 'Export Databricks Workspace'
-        #   continueOnError: true
-        #   inputs: 
-        #     script: |
-        #       for add in $(files):
-        #       do
-        #         echo $add
-        #       done
         - script: python3 ci_cd/databricks/templates/new_build_release.py
           workingDirectory: $(Build.SourcesDirectory)
           continueOnError: true
