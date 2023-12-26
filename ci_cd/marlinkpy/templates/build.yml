@@ -1,7 +1,7 @@
 jobs:
 - job: Build
   pool:
-      name: Hosted Ubuntu 1604
+      name: ubuntu-latest
   workspace:
     clean: all
   steps:
